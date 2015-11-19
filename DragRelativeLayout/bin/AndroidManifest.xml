@@ -38,6 +38,11 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity android:name="com.commonliabray.activity.customview.LoadingActivity" />
         <activity android:name="com.commonliabray.activity.fragment.viewpager.ProductTourActivity" />
+       
+        <activity android:name="com.commonliabray.activity.photoview.LauncherActivity" />
+        <activity android:name="com.commonliabray.activity.photoview.RotationSampleActivity" />
+        <activity android:name="com.commonliabray.activity.photoview.SimpleSampleActivity" />
+        <activity android:name="com.commonliabray.activity.photoview.ViewPagerActivity" />
     </application>
 
 </manifest>

@@ -109,13 +109,13 @@ public final class R {
 		public static final int id_circle_menu_item_text = 0x7f070001;
 		public static final int image = 0x7f070015;
 		public static final int left = 0x7f070003;
-		public static final int name = 0x7f070032;
-		public static final int progressbar = 0x7f070033;
+		public static final int name = 0x7f070035;
+		public static final int progressbar = 0x7f070036;
 		public static final int right = 0x7f070004;
 	}
 	public static final class layout {
-		public static final int circle_menu_item = 0x7f030010;
-		public static final int update_notification = 0x7f030014;
+		public static final int circle_menu_item = 0x7f030013;
+		public static final int update_notification = 0x7f030017;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f080000;

@@ -91,6 +91,7 @@
         <item>复杂的ValueAnimatior使用</item>
         <item>仿58加载动画</item>
         <item>ViewPager自定义平移动画</item>
+        <item>PhotoView使用Demo</item>
     </string-array>
 
 </resources>
