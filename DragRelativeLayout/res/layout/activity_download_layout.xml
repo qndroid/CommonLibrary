@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dpv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red_primary_color"
+    android:orientation="vertical" >
+
+    <com.common.widget.view.DownloadProgressBar
+        android:id="@+id/dpv3"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        dpv:circleBackgroundColor="@color/red_light_primary_color"
+        dpv:circleRadius="48dp"
+        dpv:drawingColor="@color/red_text_icon_color"
+        dpv:lineWidth="3dp"
+        dpv:overshootValue="2.5"
+        dpv:progressBackgroundColor="@color/red_light_primary_color"
+        dpv:progressColor="@color/red_text_icon_color"
+        dpv:progressDuration="2000"
+        dpv:resultDuration="5000"
+        dpv:strokeWidth="3dp" />
+
+    <TextView
+        android:id="@+id/success_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="48dp"
+        android:text="点击下载"
+        android:textColor="@color/blue_light_primary_color"
+        android:textSize="40sp" />
+
+</LinearLayout>

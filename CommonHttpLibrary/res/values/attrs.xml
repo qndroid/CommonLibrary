@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="AutomicMove">
+        <attr name="auto_background_one" format="reference" />
+        <attr name="auto_background_two" format="reference" />
+        <attr name="auto_speed" format="dimension" />
+        <attr name="auto_alpha" format="float" />
+        <attr name="auto_direction">
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="DownloadProgressView">
+        <attr name="circleRadius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="lineWidth" format="dimension" />
+        <attr name="progressDuration" format="integer" />
+        <attr name="resultDuration" format="integer" />
+        <attr name="progressBackgroundColor" format="color" />
+        <attr name="drawingColor" format="color" />
+        <attr name="progressColor" format="color" />
+        <attr name="circleBackgroundColor" format="color" />
+        <attr name="overshootValue" format="float" />
+    </declare-styleable>
+
+</resources>
