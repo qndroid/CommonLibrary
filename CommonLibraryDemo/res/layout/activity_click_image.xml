@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <com.common.widget.view.ClickImageView
+        android:id="@+id/image_view_1"
+        android:layout_width="77dp"
+        android:layout_height="93dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/click_image1" />
+
+    <com.common.widget.view.ClickImageView
+        android:id="@+id/image_view_2"
+        android:layout_width="77dp"
+        android:layout_height="93dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/image_view_1"
+        android:background="@drawable/click_image2" />
+
+    <com.common.widget.view.ClickImageView
+        android:id="@+id/image_view_3"
+        android:layout_width="77dp"
+        android:layout_height="93dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/image_view_2"
+        android:background="@drawable/click_image3" />
+
+    <com.common.widget.view.ClickImageView
+        android:id="@+id/image_view_4"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/image_view_1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/click_image4" />
+
+    <com.common.widget.view.ClickImageView
+        android:id="@+id/image_view_5"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/image_view_1"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/image_view_4"
+        android:background="@drawable/click_image5" />
+
+    <com.common.widget.view.ClickImageView
+        android:id="@+id/image_view_6"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/image_view_1"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/image_view_5"
+        android:background="@drawable/click_image7" />
+
+</RelativeLayout>

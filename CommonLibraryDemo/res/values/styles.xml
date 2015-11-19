@@ -1,0 +1,24 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <item name="@android:style/Theme.NoTitleBar.Fullscreen">true</item>
+    </style>
+
+    <style name="medittext_style" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/mic_rfq_edit_bg</item>
+    </style>
+
+    <style name="WelcomeHeadingAppearance" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">@dimen/welcome_heading</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="WelcomeContentAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/welcome_content</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

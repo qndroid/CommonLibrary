@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CommonLibraryDemo</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="button_product_tour">product tour</string>
+    <string name="welcom_head_01">Spreadsheets on the go</string>
+    <string name="welcom_content_01">Get stuff done with or without an internet connection.</string>
+    <string name="welcom_head_02">Share and edit together</string>
+    <string name="welcom_content_02">Write on your own or invite more people to contribute.</string>
+    <string name="welcom_head_03">Automatically save to the web</string>
+    <string name="welcom_content_03">Never lose your progress, so you can keep working from any computer or device.</string>
+    <string name="welcom_head_04">Edit Excel spreadsheets</string>
+    <string name="welcom_content_04">Open, edit, and save Excel files - all within Sheets.</string>
+
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <string-array name="date">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>G</item>
+        <item>H</item>
+        <item>J</item>
+        <item>L</item>
+        <item>N</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>W</item>
+        <item>Y</item>
+        <item>Z</item>
+        <item>阿妹</item>
+        <item>阿郎</item>
+        <item>陈奕迅</item>
+        <item>周杰伦</item>
+        <item>曾一鸣</item>
+        <item>成龙</item>
+        <item>王力宏</item>
+        <item>汪峰</item>
+        <item>王菲</item>
+        <item>那英</item>
+        <item>张伟</item>
+        <item>张学友</item>
+        <item>李德华</item>
+        <item>郑源</item>
+        <item>白水水</item>
+        <item>白天不亮</item>
+        <item>陈龙</item>
+        <item>陈丽丽</item>
+        <item>哈林</item>
+        <item>高进</item>
+        <item>高雷</item>
+        <item>阮今天</item>
+        <item>龚琳娜</item>
+        <item>苏醒</item>
+        <item>苏永康</item>
+        <item>陶喆</item>
+        <item>沙宝亮</item>
+        <item>宋冬野</item>
+        <item>宋伟</item>
+        <item>袁成杰</item>
+        <item>戚薇</item>
+        <item>齐大友</item>
+        <item>齐天大圣</item>
+        <item>品冠</item>
+        <item>吴克群</item>
+        <item>BOBO</item>
+        <item>Jobs</item>
+        <item>动力火车</item>
+        <item>伍佰</item>
+        <item>#蔡依林</item>
+        <item>$797835344$</item>
+        <item>Jack</item>
+        <item>~夏先生</item>
+    </string-array>
+    <string-array name="recommend_mailbox">
+        <item>\&#064;gmail.com</item>
+        <item>\&#064;hotmail.com</item>
+        <item>\&#064;yahoo.com</item>
+        <item>\&#064;outlook.com</item>
+        <item>\&#064;aol.com</item>
+        <item>\&#064;hotmail.co.uk</item>
+        <item>\&#064;yahoo.co.uk</item>
+        <item>\&#064;mail.ru</item>
+        <item>\&#064;rediffmail.com</item>
+        <item>\&#064;live.com</item>
+        <item>\&#064;msn.com</item>
+    </string-array>
+    <string-array name="custom_view">
+        <item>仿蘑菇街循环动画</item>
+        <item>仿噶哇啦循环移动海报背影</item>
+        <item>彷赶集网圆形菜单CircleMenu</item>
+        <item>仿携程点击缩放ImageView</item>
+        <item>仿美丽说登陆拖拽DragLayout</item>
+        <item>自定义带指示器ProgressBar</item>
+        <item>自定义邮箱联想组件</item>
+        <item>仿IOS弹性ScrollView</item>
+        <item>自定义头部悬浮ListView</item>
+        <item>自定义字体随机消失TextView</item>
+        <item>仿赶集网Fragment切换动画</item>
+        <item>复杂的ValueAnimatior使用</item>
+        <item>仿58加载动画</item>
+        <item>ViewPager自定义平移动画</item>
+    </string-array>
+
+</resources>
