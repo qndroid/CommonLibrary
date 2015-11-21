@@ -3,4 +3,6 @@
     <color name="text_selected">#888</color>
     <color name="primary_material_light">#888</color>
 
+    <color name="viewfinder_mask">#60000000</color>
+    
 </resources>

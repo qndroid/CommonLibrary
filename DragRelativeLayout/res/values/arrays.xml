@@ -92,6 +92,8 @@
         <item>仿58加载动画</item>
         <item>ViewPager自定义平移动画</item>
         <item>PhotoView使用Demo</item>
+        <item>AysncHttp使用</item>
+        <item>QR_Code使用</item>
     </string-array>
 
 </resources>

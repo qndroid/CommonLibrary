@@ -110,7 +110,7 @@ import android.os.Looper;
  * @see com.loopj.android.http.AsyncHttpResponseHandler
  * @see com.loopj.android.http.ResponseHandlerInterface
  * @see com.loopj.android.http.RequestParams
- * 本身支持了http和https两种应用层协议
+ * 锟斤拷锟斤拷支锟斤拷锟斤拷http锟斤拷https锟斤拷锟斤拷应锟矫诧拷协锟斤拷
  */
 public class AsyncHttpClient
 {
@@ -180,7 +180,7 @@ public class AsyncHttpClient
 	 * @param httpsPort                  HTTPS port to be used, must be greater than 0
 	 */
 	public AsyncHttpClient(boolean fixNoHttpResponseException, int httpPort, int httpsPort)
-	{
+	{   
 		this(getDefaultSchemeRegistry(fixNoHttpResponseException, httpPort, httpsPort));
 	}
 
@@ -217,10 +217,10 @@ public class AsyncHttpClient
 		SSLSocketFactory sslSocketFactory;
 		if (fixNoHttpResponseException)
 		{
-			// InputStream ins = mApplication.getAssets().open("my.key");
-			// sslSocketFactory = MySSLSocketFactory.getFixedSocketFactory(ins);
+			//InputStream ins = mApplication.getAssets().open("my.key");
+			//sslSocketFactory = MySSLSocketFactory.getFixedSocketFactory(ins);
 			/**
-			 * 可以修改为只信任指定证书文件，目前的实现是信任所有证书
+			 * 锟斤拷锟斤拷锟睫革拷为只锟斤拷锟斤拷指锟斤拷证锟斤拷锟侥硷拷锟斤拷目前锟斤拷实锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷证锟斤拷
 			 */
 			sslSocketFactory = MySSLSocketFactory.getFixedSocketFactory();
 		}
@@ -231,7 +231,7 @@ public class AsyncHttpClient
 
 		SchemeRegistry schemeRegistry = new SchemeRegistry();
 		schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), httpPort));
-		schemeRegistry.register(new Scheme("https", sslSocketFactory, httpsPort)); // 为https请求添加SSLFactory
+		schemeRegistry.register(new Scheme("https", sslSocketFactory, httpsPort)); // 为https锟斤拷锟斤拷锟斤拷锟絊SLFactory
 
 		return schemeRegistry;
 	}

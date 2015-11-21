@@ -8,18 +8,10 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="21" />
 
-    <application
-        android:allowBackup="true"
-       >
-        <activity
-            android:name="com.loopj.android.http.MainActivity"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+    <application android:allowBackup="true" >
+   
     </application>
+
+   
 
 </manifest>

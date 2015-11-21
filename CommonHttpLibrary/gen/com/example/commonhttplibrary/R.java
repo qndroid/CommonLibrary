@@ -138,113 +138,199 @@ containing a value of this type.
         public static int strokeWidth=0x7f010006;
     }
     public static final class color {
-        public static int blue_dark_primary_color=0x7f040039;
-        public static int blue_light_primary_color=0x7f040038;
-        public static int blue_primary_color=0x7f040037;
-        public static int blue_text_icon_color=0x7f04003a;
-        public static int circle=0x7f040040;
-        public static int color_161616=0x7f040032;
-        public static int color_3f4352=0x7f040023;
-        public static int color_4c9eb6ff=0x7f04002b;
-        public static int color_5a6572=0x7f04001d;
-        public static int color_5a79b7=0x7f040017;
-        public static int color_5ba7e1=0x7f040014;
-        public static int color_62917a=0x7f040026;
-        public static int color_63c6a8=0x7f040005;
-        public static int color_63cd99=0x7f040006;
-        public static int color_666666=0x7f040042;
-        public static int color_66b48e=0x7f040029;
-        public static int color_66bbba=0x7f040004;
-        public static int color_6bce90=0x7f040007;
-        public static int color_6cb4c4=0x7f040003;
-        public static int color_6f84a9=0x7f040027;
-        public static int color_73adcd=0x7f040002;
-        public static int color_7aa7d6=0x7f040001;
-        public static int color_7dce8a=0x7f040008;
-        public static int color_7ea1de=0x7f040000;
-        public static int color_8fa5bc=0x7f04002a;
-        public static int color_969696=0x7f04002f;
-        public static int color_96cc84=0x7f040009;
-        public static int color_9f880e=0x7f040024;
-        public static int color_a6d0e6=0x7f040018;
-        public static int color_b19ee0=0x7f040015;
-        public static int color_b2c97d=0x7f04000a;
-        public static int color_b6b6b6=0x7f040030;
-        public static int color_c0805a=0x7f040025;
-        public static int color_c0c4ce=0x7f04001f;
-        public static int color_cdcdcd=0x7f04002d;
-        public static int color_d3c477=0x7f04000b;
-        public static int color_d6e0f1=0x7f040028;
-        public static int color_dcdcdc=0x7f040031;
-        public static int color_dddddd=0x7f040020;
-        public static int color_e1e1e1=0x7f040019;
-        public static int color_e5ebf0=0x7f04002c;
-        public static int color_e7a3e5=0x7f040016;
-        public static int color_e85548=0x7f040013;
-        public static int color_e8e8e8=0x7f040022;
-        public static int color_e9be72=0x7f04000c;
-        public static int color_f0674e=0x7f040012;
-        public static int color_f2f2f2=0x7f04001b;
-        public static int color_f6f6f6=0x7f040021;
-        public static int color_f87653=0x7f040010;
-        public static int color_fab76d=0x7f04000d;
-        public static int color_fd4634=0x7f04001c;
-        public static int color_ff4438=0x7f04001e;
-        public static int color_ff7070=0x7f04002e;
-        public static int color_ff8a5a=0x7f040011;
-        public static int color_ff985a=0x7f04001a;
-        public static int color_ff9c60=0x7f04000f;
-        public static int color_ffae68=0x7f04000e;
-        public static int green_dark_primary_color=0x7f04003b;
-        public static int green_light_primary_color=0x7f04003d;
-        public static int green_primary_color=0x7f04003c;
-        public static int green_text_icon_color=0x7f04003e;
-        public static int rect=0x7f040041;
-        public static int red_dark_primary_color=0x7f040033;
-        public static int red_light_primary_color=0x7f040035;
-        public static int red_primary_color=0x7f040034;
-        public static int red_text_icon_color=0x7f040036;
-        public static int triangle=0x7f04003f;
+        public static int blue_dark_primary_color=0x7f060039;
+        public static int blue_light_primary_color=0x7f060038;
+        public static int blue_primary_color=0x7f060037;
+        public static int blue_text_icon_color=0x7f06003a;
+        public static int circle=0x7f060040;
+        public static int color_161616=0x7f060032;
+        public static int color_3f4352=0x7f060023;
+        public static int color_4c9eb6ff=0x7f06002b;
+        public static int color_5a6572=0x7f06001d;
+        public static int color_5a79b7=0x7f060017;
+        public static int color_5ba7e1=0x7f060014;
+        public static int color_62917a=0x7f060026;
+        public static int color_63c6a8=0x7f060005;
+        public static int color_63cd99=0x7f060006;
+        public static int color_666666=0x7f060042;
+        public static int color_66b48e=0x7f060029;
+        public static int color_66bbba=0x7f060004;
+        public static int color_6bce90=0x7f060007;
+        public static int color_6cb4c4=0x7f060003;
+        public static int color_6f84a9=0x7f060027;
+        public static int color_73adcd=0x7f060002;
+        public static int color_7aa7d6=0x7f060001;
+        public static int color_7dce8a=0x7f060008;
+        public static int color_7ea1de=0x7f060000;
+        public static int color_8fa5bc=0x7f06002a;
+        public static int color_969696=0x7f06002f;
+        public static int color_96cc84=0x7f060009;
+        public static int color_9f880e=0x7f060024;
+        public static int color_a6d0e6=0x7f060018;
+        public static int color_b19ee0=0x7f060015;
+        public static int color_b2c97d=0x7f06000a;
+        public static int color_b6b6b6=0x7f060030;
+        public static int color_c0805a=0x7f060025;
+        public static int color_c0c4ce=0x7f06001f;
+        public static int color_cdcdcd=0x7f06002d;
+        public static int color_d3c477=0x7f06000b;
+        public static int color_d6e0f1=0x7f060028;
+        public static int color_dcdcdc=0x7f060031;
+        public static int color_dddddd=0x7f060020;
+        public static int color_e1e1e1=0x7f060019;
+        public static int color_e5ebf0=0x7f06002c;
+        public static int color_e7a3e5=0x7f060016;
+        public static int color_e85548=0x7f060013;
+        public static int color_e8e8e8=0x7f060022;
+        public static int color_e9be72=0x7f06000c;
+        public static int color_f0674e=0x7f060012;
+        public static int color_f2f2f2=0x7f06001b;
+        public static int color_f6f6f6=0x7f060021;
+        public static int color_f87653=0x7f060010;
+        public static int color_fab76d=0x7f06000d;
+        public static int color_fd4634=0x7f06001c;
+        public static int color_ff4438=0x7f06001e;
+        public static int color_ff7070=0x7f06002e;
+        public static int color_ff8a5a=0x7f060011;
+        public static int color_ff985a=0x7f06001a;
+        public static int color_ff9c60=0x7f06000f;
+        public static int color_ffae68=0x7f06000e;
+        public static int green_dark_primary_color=0x7f06003b;
+        public static int green_light_primary_color=0x7f06003d;
+        public static int green_primary_color=0x7f06003c;
+        public static int green_text_icon_color=0x7f06003e;
+        public static int possible_result_points=0x7f060045;
+        public static int rect=0x7f060041;
+        public static int red_dark_primary_color=0x7f060033;
+        public static int red_light_primary_color=0x7f060035;
+        public static int red_primary_color=0x7f060034;
+        public static int red_text_icon_color=0x7f060036;
+        public static int result_image_border=0x7f060046;
+        public static int result_minor_text=0x7f060047;
+        public static int result_points=0x7f060048;
+        public static int result_view=0x7f060044;
+        public static int triangle=0x7f06003f;
+        /**  QR_Code 
+         */
+        public static int viewfinder_mask=0x7f060043;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
          */
-        public static int activity_horizontal_margin=0x7f050000;
-        public static int activity_vertical_margin=0x7f050001;
+        public static int activity_horizontal_margin=0x7f070000;
+        public static int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
-        public static int ic_launcher=0x7f020000;
-        public static int icon_indictor=0x7f020001;
-        public static int icon_mini_lanucher=0x7f020002;
-        public static int icon_san_jiao=0x7f020003;
+        public static int fas=0x7f020000;
+        public static int fat=0x7f020001;
+        public static int flash_drawable_btn=0x7f020002;
+        public static int flash_light=0x7f020003;
+        public static int fle=0x7f020004;
+        public static int flf=0x7f020005;
+        public static int flg=0x7f020006;
+        public static int flh=0x7f020007;
+        public static int fli=0x7f020008;
+        public static int flj=0x7f020009;
+        public static int flk=0x7f02000a;
+        public static int ic_launcher=0x7f02000b;
+        public static int icon_indictor=0x7f02000c;
+        public static int icon_mini_lanucher=0x7f02000d;
+        public static int icon_san_jiao=0x7f02000e;
+        public static int mm_title_back_btn=0x7f02000f;
+        public static int photo_drawable_btn=0x7f020010;
+        public static int qrcode_drawable_btn=0x7f020011;
+        public static int qrcode_scan_line=0x7f020012;
     }
     public static final class id {
-        public static int id_circle_menu_item_center=0x7f060002;
-        public static int id_circle_menu_item_image=0x7f060000;
-        public static int id_circle_menu_item_text=0x7f060001;
-        public static int image=0x7f060005;
-        public static int left=0x7f060003;
-        public static int name=0x7f060006;
-        public static int progressbar=0x7f060007;
-        public static int right=0x7f060004;
+        public static int about_version_code=0x7f080011;
+        /**  QR_Code 
+         */
+        public static int auto_focus=0x7f080003;
+        public static int button_back=0x7f080018;
+        public static int decode=0x7f080004;
+        public static int decode_failed=0x7f080005;
+        public static int decode_succeeded=0x7f080006;
+        public static int encode_failed=0x7f080007;
+        public static int encode_succeeded=0x7f080008;
+        public static int flash_btn=0x7f080016;
+        public static int gridview=0x7f08000f;
+        public static int id_circle_menu_item_center=0x7f080002;
+        public static int id_circle_menu_item_image=0x7f080000;
+        public static int id_circle_menu_item_text=0x7f080001;
+        public static int image=0x7f08001e;
+        public static int include1=0x7f08001c;
+        public static int include2=0x7f08001d;
+        public static int launch_product_query=0x7f080009;
+        public static int left=0x7f080013;
+        public static int name=0x7f08001f;
+        public static int photo_btn=0x7f080015;
+        public static int preview_view=0x7f08001a;
+        public static int progressbar=0x7f080020;
+        public static int qrcode_btn=0x7f080017;
+        public static int quit=0x7f08000a;
+        public static int restart_preview=0x7f08000b;
+        public static int return_scan_result=0x7f08000c;
+        public static int right=0x7f080014;
+        public static int search_book_contents_failed=0x7f08000d;
+        public static int search_book_contents_succeeded=0x7f08000e;
+        public static int split=0x7f080012;
+        public static int textview_title=0x7f080019;
+        public static int viewfinder_view=0x7f08001b;
+        public static int webview=0x7f080010;
     }
     public static final class layout {
-        public static int circle_menu_item=0x7f030000;
-        public static int update_notification=0x7f030001;
+        public static int activity_footer=0x7f030000;
+        public static int activity_title=0x7f030001;
+        public static int capture=0x7f030002;
+        public static int circle_menu_item=0x7f030003;
+        public static int update_notification=0x7f030004;
+    }
+    public static final class raw {
+        public static int beep=0x7f050000;
     }
     public static final class string {
         /**  app更新 
          */
-        public static int app_name=0x7f070000;
-        public static int update_download_failed=0x7f070004;
-        public static int update_download_failed_msg=0x7f070005;
-        public static int update_download_finish=0x7f070008;
-        public static int update_download_processing=0x7f070007;
-        public static int update_download_start=0x7f070006;
-        public static int update_download_tip=0x7f070009;
-        public static int update_install=0x7f070003;
-        public static int update_new_version=0x7f070002;
-        public static int update_title=0x7f070001;
+        public static int app_name=0x7f090000;
+        /**  QR_Code 
+         */
+        public static int button_ok=0x7f09000a;
+        public static int contents_contact=0x7f09000e;
+        public static int contents_email=0x7f09000f;
+        public static int contents_location=0x7f090010;
+        public static int contents_phone=0x7f090011;
+        public static int contents_sms=0x7f090012;
+        public static int contents_text=0x7f090013;
+        public static int msg_bulk_mode_scanned=0x7f09000c;
+        public static int msg_camera_framework_bug=0x7f09000b;
+        public static int preferences_actions_title=0x7f090016;
+        public static int preferences_copy_to_clipboard_title=0x7f090017;
+        public static int preferences_decode_1D_title=0x7f090018;
+        public static int preferences_decode_Data_Matrix_title=0x7f090019;
+        public static int preferences_decode_QR_title=0x7f09001a;
+        public static int preferences_play_beep=0x7f090015;
+        public static int preferences_play_beep_title=0x7f09001b;
+        public static int preferences_remember_duplicates_summary=0x7f09001c;
+        public static int preferences_remember_duplicates_title=0x7f09001d;
+        public static int preferences_scanning_title=0x7f09001e;
+        public static int preferences_supplemental_summary=0x7f09001f;
+        public static int preferences_supplemental_title=0x7f090020;
+        public static int preferences_vibrate=0x7f090014;
+        public static int preferences_vibrate_title=0x7f090021;
+        public static int preview_msg=0x7f090022;
+        public static int scan_text=0x7f09000d;
+        public static int update_download_failed=0x7f090004;
+        public static int update_download_failed_msg=0x7f090005;
+        public static int update_download_finish=0x7f090008;
+        public static int update_download_processing=0x7f090007;
+        public static int update_download_start=0x7f090006;
+        public static int update_download_tip=0x7f090009;
+        public static int update_install=0x7f090003;
+        public static int update_new_version=0x7f090002;
+        public static int update_title=0x7f090001;
+    }
+    public static final class xml {
+        public static int preferences=0x7f040000;
     }
     public static final class styleable {
         /** Attributes that can be used with a AutomicMove.

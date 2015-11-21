@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/username_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="当前用户名："
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/username_value_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/username_view"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/username_view"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/cookie_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/username_view"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="当前用户Cookie："
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/cookie_value_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/cookie_view"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/cookie_view"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/visit_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_below="@id/cookie_value_view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="访问需要Cookie的Web页面" />
+
+</RelativeLayout>

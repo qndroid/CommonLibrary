@@ -216,5 +216,4 @@ public class SimpleSampleActivity extends Activity {
 			mCurrMatrixTv.setText(rect.toString());
 		}
 	}
-
 }
