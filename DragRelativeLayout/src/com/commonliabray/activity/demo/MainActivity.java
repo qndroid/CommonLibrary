@@ -24,6 +24,7 @@ import com.commonliabray.activity.fragment.anim.FragmentTranslationActivity;
 import com.commonliabray.activity.fragment.viewpager.ProductTourActivity;
 import com.commonliabray.activity.photoview.LauncherActivity;
 import com.commonliabray.asynchttp.activity.LoginActivity;
+import com.commonliabray.camera.CameraActivity;
 import com.commonliabray.qrcode.QrCodeActivity;
 import com.example.dragrelativelayout.R;
 
@@ -109,6 +110,9 @@ public class MainActivity extends Activity implements OnItemClickListener
 			break;
 		case 16:
 			intent = new Intent(this, QrCodeActivity.class);
+			break;
+		case 17:
+			intent = new Intent(this, CameraActivity.class);
 			break;
 		}
 

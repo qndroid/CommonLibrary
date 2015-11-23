@@ -14,7 +14,6 @@
     <string name="welcom_content_03">Never lose your progress, so you can keep working from any computer or device.</string>
     <string name="welcom_head_04">Edit Excel spreadsheets</string>
     <string name="welcom_content_04">Open, edit, and save Excel files - all within Sheets.</string>
-
     <string name="menu_zoom_enable">Enable Zoom</string>
     <string name="menu_zoom_disable">Disable Zoom</string>
     <string name="menu_scale_fit_center">Change to FIT_CENTER</string>
@@ -31,5 +30,8 @@
     <string name="extract_visible_bitmap">Extract visible bitmap</string>
     <string name="menu_lock">Lock</string>
     <string name="menu_unlock">Unlock</string>
-    
+    <!-- camera -->
+    <string name="take_photo">拍照</string>
+    <string name="auto_focus">闪光灯</string>
+
 </resources>

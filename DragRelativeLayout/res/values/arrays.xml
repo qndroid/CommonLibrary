@@ -94,6 +94,7 @@
         <item>PhotoView使用Demo</item>
         <item>AysncHttp使用</item>
         <item>QR_Code使用</item>
+        <item>自定义Camera</item>
     </string-array>
 
 </resources>
