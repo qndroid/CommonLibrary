@@ -209,6 +209,7 @@ containing a value of this type.
         public static int result_minor_text=0x7f060047;
         public static int result_points=0x7f060048;
         public static int result_view=0x7f060044;
+        public static int system_bar_color=0x7f060049;
         public static int triangle=0x7f06003f;
         /**  QR_Code 
          */

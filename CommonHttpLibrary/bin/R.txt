@@ -84,6 +84,7 @@ int color result_image_border 0x7f060046
 int color result_minor_text 0x7f060047
 int color result_points 0x7f060048
 int color result_view 0x7f060044
+int color system_bar_color 0x7f060049
 int color triangle 0x7f06003f
 int color viewfinder_mask 0x7f060043
 int dimen activity_horizontal_margin 0x7f070000

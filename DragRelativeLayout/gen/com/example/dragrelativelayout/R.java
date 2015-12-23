@@ -305,7 +305,7 @@ containing a value of this type.
         public static final int green_primary_color=0x7f08003c;
         public static final int green_text_icon_color=0x7f08003e;
         public static final int possible_result_points=0x7f080045;
-        public static final int primary_material_light=0x7f08004a;
+        public static final int primary_material_light=0x7f08004b;
         public static final int rect=0x7f080041;
         public static final int red_dark_primary_color=0x7f080033;
         public static final int red_light_primary_color=0x7f080035;
@@ -315,7 +315,8 @@ containing a value of this type.
         public static final int result_minor_text=0x7f080047;
         public static final int result_points=0x7f080048;
         public static final int result_view=0x7f080044;
-        public static final int text_selected=0x7f080049;
+        public static final int system_bar_color=0x7f080049;
+        public static final int text_selected=0x7f08004a;
         public static final int triangle=0x7f08003f;
         /**  QR_Code 
          */
@@ -621,20 +622,21 @@ containing a value of this type.
         public static final int activity_qrcode=0x7f030013;
         public static final int activity_scrollview=0x7f030014;
         public static final int activity_secrettextview=0x7f030015;
-        public static final int activity_title=0x7f030016;
-        public static final int activity_tutorial=0x7f030017;
-        public static final int associate_mail_list_item=0x7f030018;
-        public static final int capture=0x7f030019;
-        public static final int circle_menu_item=0x7f03001a;
-        public static final int pinner_item=0x7f03001b;
-        public static final int pinner_item_group=0x7f03001c;
-        public static final int sliding_fragment_layout_left=0x7f03001d;
-        public static final int update_notification=0x7f03001e;
-        public static final int welcome_fragment1=0x7f03001f;
-        public static final int welcome_fragment2=0x7f030020;
-        public static final int welcome_fragment3=0x7f030021;
-        public static final int welcome_fragment4=0x7f030022;
-        public static final int welcome_fragment5=0x7f030023;
+        public static final int activity_systembar_layout=0x7f030016;
+        public static final int activity_title=0x7f030017;
+        public static final int activity_tutorial=0x7f030018;
+        public static final int associate_mail_list_item=0x7f030019;
+        public static final int capture=0x7f03001a;
+        public static final int circle_menu_item=0x7f03001b;
+        public static final int pinner_item=0x7f03001c;
+        public static final int pinner_item_group=0x7f03001d;
+        public static final int sliding_fragment_layout_left=0x7f03001e;
+        public static final int update_notification=0x7f03001f;
+        public static final int welcome_fragment1=0x7f030020;
+        public static final int welcome_fragment2=0x7f030021;
+        public static final int welcome_fragment3=0x7f030022;
+        public static final int welcome_fragment4=0x7f030023;
+        public static final int welcome_fragment5=0x7f030024;
     }
     public static final class menu {
         public static final int camera=0x7f0f0000;
@@ -663,6 +665,7 @@ containing a value of this type.
         public static final int contents_text=0x7f0b0013;
         public static final int extract_visible_bitmap=0x7f0b003c;
         public static final int hello_world=0x7f0b0025;
+        public static final int ipsum=0x7f0b0041;
         public static final int menu_lock=0x7f0b003d;
         public static final int menu_matrix_capture=0x7f0b003b;
         public static final int menu_matrix_restore=0x7f0b003a;

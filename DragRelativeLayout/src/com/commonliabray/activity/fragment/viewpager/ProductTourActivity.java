@@ -16,8 +16,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-public class ProductTourActivity extends FragmentActivity
-{
+public class ProductTourActivity extends FragmentActivity {
 
 	static final int NUM_PAGES = 5;
 
@@ -27,8 +26,7 @@ public class ProductTourActivity extends FragmentActivity
 	boolean isOpaque = true;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		/**
@@ -42,25 +40,21 @@ public class ProductTourActivity extends FragmentActivity
 		pager = (ViewPager) findViewById(R.id.pager);
 		pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
 		pager.setAdapter(pagerAdapter);
+		/**
+		 * 为viewpager的滑动添加自定义的动画效果
+		 */
 		pager.setPageTransformer(true, new CrossfadePageTransformer());
-		pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
-		{
+		pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			@Override
-			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-			{
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-				if (position == NUM_PAGES - 2 && positionOffset > 0)
-				{
-					if (isOpaque)
-					{
+				if (position == NUM_PAGES - 2 && positionOffset > 0) {
+					if (isOpaque) {
 						pager.setBackgroundColor(Color.TRANSPARENT);
 						isOpaque = false;
 					}
-				}
-				else
-				{
-					if (!isOpaque)
-					{
+				} else {
+					if (!isOpaque) {
 						pager.setBackgroundColor(getResources().getColor(R.color.primary_material_light));
 						isOpaque = true;
 					}
@@ -68,23 +62,16 @@ public class ProductTourActivity extends FragmentActivity
 			}
 
 			@Override
-			public void onPageSelected(int position)
-			{
-				if (position == NUM_PAGES - 2)
-				{
-				}
-				else if (position < NUM_PAGES - 2)
-				{
-				}
-				else if (position == NUM_PAGES - 1)
-				{
+			public void onPageSelected(int position) {
+				if (position == NUM_PAGES - 2) {
+				} else if (position < NUM_PAGES - 2) {
+				} else if (position == NUM_PAGES - 1) {
 					endTutorial();
 				}
 			}
 
 			@Override
-			public void onPageScrollStateChanged(int state)
-			{
+			public void onPageScrollStateChanged(int state) {
 
 			}
 		});
@@ -92,47 +79,36 @@ public class ProductTourActivity extends FragmentActivity
 	}
 
 	@Override
-	protected void onDestroy()
-	{
+	protected void onDestroy() {
 		super.onDestroy();
-		if (pager != null)
-		{
+		if (pager != null) {
 			pager.clearOnPageChangeListeners();
 		}
 	}
 
-	private void endTutorial()
-	{
+	private void endTutorial() {
 		finish();
 	}
 
 	@Override
-	public void onBackPressed()
-	{
-		if (pager.getCurrentItem() == 0)
-		{
+	public void onBackPressed() {
+		if (pager.getCurrentItem() == 0) {
 			super.onBackPressed();
-		}
-		else
-		{
+		} else {
 			pager.setCurrentItem(pager.getCurrentItem() - 1);
 		}
 	}
 
-	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter
-	{
+	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
-		public ScreenSlidePagerAdapter(FragmentManager fm)
-		{
+		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
 
 		@Override
-		public Fragment getItem(int position)
-		{
+		public Fragment getItem(int position) {
 			ProductTourFragment tp = null;
-			switch (position)
-			{
+			switch (position) {
 			case 0:
 				tp = ProductTourFragment.newInstance(R.layout.welcome_fragment1);
 				break;
@@ -154,8 +130,7 @@ public class ProductTourActivity extends FragmentActivity
 		}
 
 		@Override
-		public int getCount()
-		{
+		public int getCount() {
 			return NUM_PAGES;
 		}
 	}
@@ -165,11 +140,9 @@ public class ProductTourActivity extends FragmentActivity
 	 * @author majinxin
 	 * @date 2015年10月15日
 	 */
-	public class CrossfadePageTransformer implements ViewPager.PageTransformer
-	{
+	public class CrossfadePageTransformer implements ViewPager.PageTransformer {
 		@Override
-		public void transformPage(View page, float position)
-		{
+		public void transformPage(View page, float position) {
 			int pageWidth = page.getWidth();
 
 			View backgroundView = page.findViewById(R.id.welcome_fragment);
@@ -189,16 +162,14 @@ public class ProductTourActivity extends FragmentActivity
 			View object12 = page.findViewById(R.id.a012);
 			View object13 = page.findViewById(R.id.a013);
 
-			if (0 <= position && position < 1)
-			{
-				/**				
+			if (0 <= position && position < 1) {
+				/**
 				 * [1 , 0]右侧page处理,抵消page本身的滑动动画
 				 */
 				ViewHelper.setTranslationX(page, pageWidth * (-position));
 			}
 
-			if (-1 < position && position < 0)
-			{
+			if (-1 < position && position < 0) {
 				/**
 				 * [-1 , 0]左侧page处理,抵消page本身的滑动动画
 				 */
@@ -206,97 +177,76 @@ public class ProductTourActivity extends FragmentActivity
 			}
 			/*************************************************************************************************************************/
 
-			if (position <= -1.0f || position >= 1.0f)
-			{
+			if (position <= -1.0f || position >= 1.0f) {
 				/**
 				 * (-& ~ -1),(1 ~ +&)不可见部分不作处理
 				 */
-			}
-			else if (position == 0.0f)
-			{
-			}
-			else
-			{
+			} else if (position == 0.0f) {
+			} else {
 				/**
-				 *  针对具体的View,移动产生视差
+				 * 针对具体的View,移动产生视差
 				 */
-				if (backgroundView != null)
-				{
+				if (backgroundView != null) {
 					ViewHelper.setAlpha(backgroundView, 1.0f - Math.abs(position));
 				}
 
-				if (text_head != null)
-				{
+				if (text_head != null) {
 					ViewHelper.setTranslationX(text_head, pageWidth * position);
 					ViewHelper.setAlpha(text_head, 1.0f - Math.abs(position));
 				}
 
-				if (text_content != null)
-				{
+				if (text_content != null) {
 					ViewHelper.setTranslationX(text_content, pageWidth * position);
 					ViewHelper.setAlpha(text_content, 1.0f - Math.abs(position));
 				}
 
-				if (object1 != null)
-				{
+				if (object1 != null) {
 					ViewHelper.setTranslationX(object1, pageWidth * position);
 				}
 
 				// parallax effect
-				if (object2 != null)
-				{
+				if (object2 != null) {
 					ViewHelper.setTranslationX(object2, pageWidth * position);
 				}
 
-				if (object4 != null)
-				{
+				if (object4 != null) {
 					ViewHelper.setTranslationX(object4, pageWidth / 2 * position);
 				}
-				if (object5 != null)
-				{
+				if (object5 != null) {
 					ViewHelper.setTranslationX(object5, pageWidth / 2 * position);
 				}
-				if (object6 != null)
-				{
+				if (object6 != null) {
 					ViewHelper.setTranslationX(object6, pageWidth / 2 * position);
 				}
-				if (object7 != null)
-				{
+				if (object7 != null) {
 					ViewHelper.setTranslationX(object7, pageWidth / 2 * position);
 				}
 
-				if (object8 != null)
-				{
+				if (object8 != null) {
 					ViewHelper.setTranslationX(object8, (float) (pageWidth / 1.5 * position));
 				}
 
-				if (object9 != null)
-				{
+				if (object9 != null) {
 					ViewHelper.setTranslationX(object9, (float) (pageWidth / 2 * position));
 				}
 
-				if (object10 != null)
-				{
+				if (object10 != null) {
 					ViewHelper.setTranslationX(object10, pageWidth / 2 * position);
 				}
 
-				if (object11 != null)
-				{
+				if (object11 != null) {
 					ViewHelper.setTranslationX(object11, (float) (pageWidth / 1.2 * position));
 				}
 
-				if (object12 != null)
-				{
+				if (object12 != null) {
 					ViewHelper.setTranslationX(object12, (float) (pageWidth / 1.3 * position));
 				}
 
-				if (object13 != null)
-				{
+				if (object13 != null) {
 					ViewHelper.setTranslationX(object13, (float) (pageWidth / 1.8 * position));
 				}
 
-				if (object3 != null)
-				{
+				if (object3 != null) {
 					ViewHelper.setTranslationX(object3, (float) (pageWidth / 1.2 * position));
 				}
 			}

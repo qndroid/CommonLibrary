@@ -96,6 +96,7 @@ public final class R {
 		public static final int result_minor_text = 0x7f080047;
 		public static final int result_points = 0x7f080048;
 		public static final int result_view = 0x7f080044;
+		public static final int system_bar_color = 0x7f080049;
 		public static final int triangle = 0x7f08003f;
 		public static final int viewfinder_mask = 0x7f080043;
 	}
@@ -161,10 +162,10 @@ public final class R {
 	}
 	public static final class layout {
 		public static final int activity_footer = 0x7f030008;
-		public static final int activity_title = 0x7f030016;
-		public static final int capture = 0x7f030019;
-		public static final int circle_menu_item = 0x7f03001a;
-		public static final int update_notification = 0x7f03001e;
+		public static final int activity_title = 0x7f030017;
+		public static final int capture = 0x7f03001a;
+		public static final int circle_menu_item = 0x7f03001b;
+		public static final int update_notification = 0x7f03001f;
 	}
 	public static final class raw {
 		public static final int beep = 0x7f070000;

@@ -49,6 +49,9 @@
         <activity android:name="com.commonliabray.asynchttp.activity.LoginActivity" />
         <activity android:name="com.commonliabray.asynchttp.activity.WebActivity" />
         <activity android:name="com.commonliabray.qrcode.QrCodeActivity" />
+
+        <!-- systembartint -->
+        <activity android:name="com.commonliabray.activity.systembartint.SystemBarActivity" />
         <!-- 依赖工程中的Activity -->
         <activity
             android:name="com.zxing.app.CaptureActivity"

@@ -36,6 +36,7 @@ public final class DataBaseConstraint {
 	 * 对应数据库上的表
 	 */
 	public static final String TABLE_FUND = DBHelper.FUND_LIST_TABLE;
+
 	/**
 	 * 对应表中的字段
 	 */
@@ -44,12 +45,14 @@ public final class DataBaseConstraint {
 	public static final String COLMUN_FUND_TYPE = DBHelper.FUND_TYPE;
 	public static final String COLMUN_FUND_SPELL = DBHelper.FUND_SPELL;
 	public static final String COLMUN_FUND_ID = DBHelper.ID;
+
 	/**
 	 * 表的Uri供应用层访问数据
 	 */
 	public static final Uri URI_FUND = Uri.parse(SCHEME + AUTHORITY + "/" + TABLE_FUND);
 	public static final Uri URI_FUND_ID_BASE = Uri.parse(SCHEME + AUTHORITY + "/" + TABLE_FUND + "/");
 	public static final Uri URI_FUND_ID = Uri.parse(SCHEME + AUTHORITY + "/" + TABLE_FUND + "/#");
+
 	/**
 	 * 返回类型是dir还是item
 	 */
