@@ -50,6 +50,17 @@
         <activity android:name="com.commonliabray.asynchttp.activity.WebActivity" />
         <activity android:name="com.commonliabray.qrcode.QrCodeActivity" />
 
+        <!-- sharesdk -->
+        <activity android:name="com.commonliabray.sharesdk.ShareActivity" />
+        <activity android:name="com.commonliabray.sharesdk.ThirdLoginActivity" />
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+
         <!-- systembartint -->
         <activity android:name="com.commonliabray.activity.systembartint.SystemBarActivity" />
         <!-- 依赖工程中的Activity -->
@@ -60,6 +71,13 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity android:name="com.commonliabray.camera.CameraActivity" />
+        
+        <!-- map相关 -->
+        <activity android:name="com.commonliabray.map.basic.BasicMapActivity" />
+        <service android:name="com.amap.api.location.APSService" />
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="1df15be56b028fee348e817bb210e1e9" />
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

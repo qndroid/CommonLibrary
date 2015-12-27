@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DevInfor>
+
+    <ShareSDK AppKey="cbf49c50edf7" />
+
+    <QZone
+        AppId="1104917113"
+        AppKey="uH5MYQ3FEZd6vVJu"
+        Id="1"
+        ShareByAppClient="true"
+        SortId="1" />
+
+    <Wechat
+        AppId="wx9529c2408f3e0233"
+        AppSecret="d4624c36b6795d1d99dcf0547af5443d"
+        Enable="true"
+        Id="2"
+        ShareByAppClient="true"
+        SortId="2" />
+
+    <WechatMoments
+        AppId="wx9529c2408f3e0233"
+        AppSecret="d4624c36b6795d1d99dcf0547af5443d"
+        Enable="true"
+        Id="3"
+        ShareByAppClient="true"
+        SortId="3" />
+
+    <WechatFavorite
+        AppId="wx9529c2408f3e0233"
+        AppSecret="d4624c36b6795d1d99dcf0547af5443d"
+        Enable="true"
+        Id="4"
+        ShareByAppClient="true"
+        SortId="4" />
+
+    <!-- ShareByAppClient标识是否使用微博客户端分享，默认是false -->
+
+    <QQ
+        AppId="1104917113"
+        AppKey="uH5MYQ3FEZd6vVJu"
+        Enable="true"
+        Id="5"
+        ShareByAppClient="true"
+        SortId="5" />
+
+    <ShortMessage
+        Enable="true"
+        Id="6"
+        SortId="6" />
+
+    <Email
+        Enable="true"
+        Id="7"
+        SortId="7" />
+
+    <TencentWeibo
+        AppKey="1104917113"
+        AppSecret="uH5MYQ3FEZd6vVJu"
+        Enable="true"
+        Id="8"
+        RedirectUri="http://youku.com"
+        ShareByAppClient="true"
+        SortId="8" />
+
+</DevInfor>
