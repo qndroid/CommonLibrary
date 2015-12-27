@@ -1,9 +1,10 @@
 package com.commonliabray.asynchttp;
 
+import android.app.Application;
+
 import com.loopj.android.http.PersistentCookieStore;
 import com.loopj.android.http.commonhttp.CommonClient;
-
-import android.app.Application;
+import com.sharesdk.ShareManager;
 
 /**********************************************************
  * @文件名称：CommonApplication.java
@@ -18,8 +19,9 @@ public class CommonApplication extends Application
 	public void onCreate()
 	{
 		super.onCreate();
-		
+
 		initCookieStore();
+		initShareSdk();
 	}
 
 	/**
@@ -27,6 +29,14 @@ public class CommonApplication extends Application
 	 */
 	private void initCookieStore()
 	{
-       CommonClient.setCookieStore(new PersistentCookieStore(this));
+		CommonClient.setCookieStore(new PersistentCookieStore(this));
+	}
+
+	/**
+	 * 初始化社会化分享组件
+	 */
+	private void initShareSdk()
+	{
+		ShareManager.initSDK(this);
 	}
 }

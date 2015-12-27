@@ -128,27 +128,27 @@ public final class R {
 	public static final class id {
 		public static final int about_version_code = 0x7f0a0011;
 		public static final int auto_focus = 0x7f0a0003;
-		public static final int button_back = 0x7f0a0051;
+		public static final int button_back = 0x7f0a0058;
 		public static final int decode = 0x7f0a0004;
 		public static final int decode_failed = 0x7f0a0005;
 		public static final int decode_succeeded = 0x7f0a0006;
 		public static final int encode_failed = 0x7f0a0007;
 		public static final int encode_succeeded = 0x7f0a0008;
-		public static final int flash_btn = 0x7f0a002d;
+		public static final int flash_btn = 0x7f0a002e;
 		public static final int gridview = 0x7f0a000f;
 		public static final int id_circle_menu_item_center = 0x7f0a0002;
 		public static final int id_circle_menu_item_image = 0x7f0a0000;
 		public static final int id_circle_menu_item_text = 0x7f0a0001;
-		public static final int image = 0x7f0a002a;
-		public static final int include1 = 0x7f0a0058;
-		public static final int include2 = 0x7f0a0059;
+		public static final int image = 0x7f0a002b;
+		public static final int include1 = 0x7f0a005f;
+		public static final int include2 = 0x7f0a0060;
 		public static final int launch_product_query = 0x7f0a0009;
 		public static final int left = 0x7f0a0013;
-		public static final int name = 0x7f0a005c;
-		public static final int photo_btn = 0x7f0a002c;
-		public static final int preview_view = 0x7f0a0056;
-		public static final int progressbar = 0x7f0a005d;
-		public static final int qrcode_btn = 0x7f0a002e;
+		public static final int name = 0x7f0a0063;
+		public static final int photo_btn = 0x7f0a002d;
+		public static final int preview_view = 0x7f0a005d;
+		public static final int progressbar = 0x7f0a0064;
+		public static final int qrcode_btn = 0x7f0a002f;
 		public static final int quit = 0x7f0a000a;
 		public static final int restart_preview = 0x7f0a000b;
 		public static final int return_scan_result = 0x7f0a000c;
@@ -156,16 +156,16 @@ public final class R {
 		public static final int search_book_contents_failed = 0x7f0a000d;
 		public static final int search_book_contents_succeeded = 0x7f0a000e;
 		public static final int split = 0x7f0a0012;
-		public static final int textview_title = 0x7f0a0052;
-		public static final int viewfinder_view = 0x7f0a0057;
+		public static final int textview_title = 0x7f0a0059;
+		public static final int viewfinder_view = 0x7f0a005e;
 		public static final int webview = 0x7f0a0010;
 	}
 	public static final class layout {
-		public static final int activity_footer = 0x7f030008;
-		public static final int activity_title = 0x7f030017;
-		public static final int capture = 0x7f03001a;
-		public static final int circle_menu_item = 0x7f03001b;
-		public static final int update_notification = 0x7f03001f;
+		public static final int activity_footer = 0x7f030009;
+		public static final int activity_title = 0x7f030019;
+		public static final int capture = 0x7f03001c;
+		public static final int circle_menu_item = 0x7f03001d;
+		public static final int update_notification = 0x7f030021;
 	}
 	public static final class raw {
 		public static final int beep = 0x7f070000;

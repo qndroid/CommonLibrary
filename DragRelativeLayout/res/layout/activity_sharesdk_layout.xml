@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/qq_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="QQ" />
+
+    <Button
+        android:id="@+id/qzone_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="QZone" />
+
+    <Button
+        android:id="@+id/wechat_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="微信朋友圈" />
+
+    <Button
+        android:id="@+id/sms_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="短信分享" />
+
+    <Button
+        android:id="@+id/email_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="邮件分享" />
+
+    <Button
+        android:id="@+id/tecent_weibo_view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="腾讯微博" />
+
+</LinearLayout>
