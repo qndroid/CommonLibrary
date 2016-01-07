@@ -1,1 +1,0 @@
-parcelable Message;

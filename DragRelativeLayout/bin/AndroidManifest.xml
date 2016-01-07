@@ -80,6 +80,22 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="1df15be56b028fee348e817bb210e1e9" />
+
+        <!-- 远程服务(AIDL)相关 -->
+        <service
+            android:name="com.commonliabray.aidl.RemoteAIDLService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.commonliabray.aidl.REMOTE_SERVICE" />
+            </intent-filter>
+        </service>
+
+        <activity android:name="com.commonliabray.aidl.RemoteAIDLActivity" />
+
+        <service android:name="com.commonliabray.aidl.NativeAIDLService" />
+
+        <activity android:name="com.commonliabray.aidl.NativeAIDLActivity" />
     </application>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />

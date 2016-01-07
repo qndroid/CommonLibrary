@@ -1,13 +1,5 @@
 package com.commonliabray.activity.demo;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-
 import com.commonliabray.activity.customview.AnimationActivity;
 import com.commonliabray.activity.customview.AutomicMoveActivity;
 import com.commonliabray.activity.customview.CircleMenuActivity;
@@ -24,12 +16,21 @@ import com.commonliabray.activity.fragment.anim.FragmentTranslationActivity;
 import com.commonliabray.activity.fragment.viewpager.ProductTourActivity;
 import com.commonliabray.activity.photoview.LauncherActivity;
 import com.commonliabray.activity.systembartint.SystemBarActivity;
+import com.commonliabray.aidl.RemoteAIDLActivity;
 import com.commonliabray.asynchttp.activity.LoginActivity;
 import com.commonliabray.camera.CameraActivity;
 import com.commonliabray.map.basic.BasicMapActivity;
 import com.commonliabray.qrcode.QrCodeActivity;
 import com.commonliabray.sharesdk.ShareActivity;
 import com.example.dragrelativelayout.R;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 /**********************************************************
  * @文件名称：MainActivity.java
@@ -38,31 +39,26 @@ import com.example.dragrelativelayout.R;
  * @文件描述：所有效果入口Activity
  * @修改历史：2015年10月2日创建初始版本
  **********************************************************/
-public class MainActivity extends Activity implements OnItemClickListener
-{
+public class MainActivity extends Activity implements OnItemClickListener {
 	private ListView mListView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		initView();
 	}
 
-	private void initView()
-	{
+	private void initView() {
 		mListView = (ListView) findViewById(R.id.list_view);
 		mListView.setOnItemClickListener(this);
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-	{
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		Intent intent = null;
-		switch (position)
-		{
+		switch (position) {
 		case 0:
 			intent = new Intent(this, AnimationActivity.class);
 			break;
@@ -125,6 +121,9 @@ public class MainActivity extends Activity implements OnItemClickListener
 			break;
 		case 20:
 			intent = new Intent(this, BasicMapActivity.class);
+			break;
+		case 21:
+			intent = new Intent(this, RemoteAIDLActivity.class);
 			break;
 		}
 		startActivity(intent);
