@@ -7,10 +7,15 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.RemoteException;
-import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.TextView;
 
 public class RemoteAIDLActivity extends Activity {
 
@@ -18,15 +23,26 @@ public class RemoteAIDLActivity extends Activity {
 	 * 远程服务Binder接口
 	 */
 	private IApplicationServiceRemoteBinder iBinder;
+	private TextView mTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		initView();
+		setContentView(mTextView);
 		Intent intent = new Intent();
 		intent.setComponent(
 				new ComponentName("com.example.dragrelativelayout", "com.commonliabray.aidl.RemoteAIDLService"));
 		bindService(intent, conn, BIND_AUTO_CREATE);
+	}
+
+	private void initView() {
+
+		mTextView = new TextView(this);
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		mTextView.setLayoutParams(params);
+		mTextView.setTextColor(Color.parseColor("#000000"));
+		mTextView.setGravity(Gravity.CENTER);
 	}
 
 	private ServiceConnection conn = new ServiceConnection() {
@@ -76,7 +92,16 @@ public class RemoteAIDLActivity extends Activity {
 		@Override
 		public void onTimer(int numIndex) throws RemoteException {
 
-			Log.e("----->in the remote activity:", numIndex + " ");
+			/**
+			 * 将消息转发到主线程去处理
+			 */
+			mHandler.obtainMessage(numIndex).sendToTarget();
+		}
+	};
+
+	private Handler mHandler = new Handler() {
+		public void handleMessage(Message msg) {
+			mTextView.setText("远程服务当前的值为: " + msg.what);
 		}
 	};
 }
