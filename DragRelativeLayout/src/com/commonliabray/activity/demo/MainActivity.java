@@ -19,6 +19,7 @@ import com.commonliabray.activity.systembartint.SystemBarActivity;
 import com.commonliabray.aidl.RemoteAIDLActivity;
 import com.commonliabray.asynchttp.activity.LoginActivity;
 import com.commonliabray.camera.CameraActivity;
+import com.commonliabray.jpush.JPushMainActivity;
 import com.commonliabray.map.basic.BasicMapActivity;
 import com.commonliabray.qrcode.QrCodeActivity;
 import com.commonliabray.sharesdk.ShareActivity;
@@ -124,6 +125,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		case 21:
 			intent = new Intent(this, RemoteAIDLActivity.class);
+			break;
+		case 22:
+			intent = new Intent(this, JPushMainActivity.class);
 			break;
 		}
 		startActivity(intent);

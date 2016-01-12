@@ -37,7 +37,7 @@ public final class DBHelper extends SQLiteOpenHelper {
 	public static final String FUND_TYPE = "type";
 
 	/**
-	 * 基金浏览历史记录表
+	 * 基金浏览历史记录表，字段与基金记录完全一样
 	 */
 	public static final String FUND_BROWSE_TABLE = "fundBrowseTable";
 
@@ -51,6 +51,9 @@ public final class DBHelper extends SQLiteOpenHelper {
 
 	public static synchronized DBHelper getInstance() {
 		if (helper == null) {
+			/**
+			 * 这里用全局Application即可
+			 */
 			helper = new DBHelper();
 		}
 		return helper;
@@ -149,7 +152,7 @@ public final class DBHelper extends SQLiteOpenHelper {
 	}
 
 	/**
-	 * 批量插入数据，显示使用事物
+	 * 批量插入数据，显示使用事物,事物的效率在批量插入时非常的明显
 	 */
 	public synchronized boolean insert(final String table, final String nullColumnHack,
 			final ArrayList<ContentValues> values) {

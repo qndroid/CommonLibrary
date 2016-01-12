@@ -144,10 +144,10 @@ public final class R {
 		public static final int include2 = 0x7f0a0068;
 		public static final int launch_product_query = 0x7f0a0009;
 		public static final int left = 0x7f0a0013;
-		public static final int name = 0x7f0a006b;
+		public static final int name = 0x7f0a008e;
 		public static final int photo_btn = 0x7f0a002d;
 		public static final int preview_view = 0x7f0a0065;
-		public static final int progressbar = 0x7f0a006c;
+		public static final int progressbar = 0x7f0a008f;
 		public static final int qrcode_btn = 0x7f0a002f;
 		public static final int quit = 0x7f0a000a;
 		public static final int restart_preview = 0x7f0a000b;
@@ -165,7 +165,7 @@ public final class R {
 		public static final int activity_title = 0x7f030019;
 		public static final int capture = 0x7f03001f;
 		public static final int circle_menu_item = 0x7f030020;
-		public static final int update_notification = 0x7f030024;
+		public static final int update_notification = 0x7f03002a;
 	}
 	public static final class raw {
 		public static final int beep = 0x7f070000;

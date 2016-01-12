@@ -99,6 +99,7 @@
         <item>系统状态栏变色</item>
         <item>高德地图组件</item>
         <item>AIDL远程通信</item>
+        <item>JPush推送组件</item>
     </string-array>
 
 </resources>

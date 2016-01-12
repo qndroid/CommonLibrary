@@ -1,15 +1,15 @@
 package com.renzhiqiang.update;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 
 /**********************************************************
  * @文件名称：UpdateDownloadRequest.java
@@ -27,8 +27,7 @@ public class UpdateDownloadRequest implements Runnable {
 	private boolean isDownloading = false;
 	private long contentLength;
 
-	public UpdateDownloadRequest(String downloadUrl, String localFilePath,
-			UpdateDownloadListener downloadListener) {
+	public UpdateDownloadRequest(String downloadUrl, String localFilePath, UpdateDownloadListener downloadListener) {
 		this.downloadUrl = downloadUrl;
 		this.localFilePath = localFilePath;
 		this.downloadListener = downloadListener;
@@ -40,19 +39,16 @@ public class UpdateDownloadRequest implements Runnable {
 		if (!Thread.currentThread().isInterrupted()) {
 			try {
 				URL url = new URL(downloadUrl);
-				HttpURLConnection connection = (HttpURLConnection) url
-						.openConnection();
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 				connection.setConnectTimeout(5000);
 				connection.setRequestMethod("GET");
-				connection.setRequestProperty("Range", "bytes=" + startPos
-						+ "-");
+				connection.setRequestProperty("Range", "bytes=" + startPos + "-");
 				connection.setRequestProperty("Connection", "Keep-Alive");
 				connection.connect();
 				contentLength = connection.getContentLength();
 				if (!Thread.currentThread().isInterrupted()) {
 					if (downloadHandler != null) {
-						downloadHandler.sendResponseMessage(connection
-								.getInputStream());
+						downloadHandler.sendResponseMessage(connection.getInputStream());//取得与远程文件的流
 					}
 				}
 			} catch (IOException e) {
@@ -126,12 +122,11 @@ public class UpdateDownloadRequest implements Runnable {
 		}
 
 		private void sendProgressChangedMessage(int progress) {
-			sendMessage(obtainMessage(PROGRESS_CHANGED, new Object[]{progress}));
+			sendMessage(obtainMessage(PROGRESS_CHANGED, new Object[] { progress }));
 		}
 
 		protected void sendFailureMessage(FailureCode failureCode) {
-			sendMessage(obtainMessage(FAILURE_MESSAGE,
-					new Object[]{failureCode}));
+			sendMessage(obtainMessage(FAILURE_MESSAGE, new Object[] { failureCode }));
 		}
 
 		//
@@ -159,21 +154,20 @@ public class UpdateDownloadRequest implements Runnable {
 		protected void handleSelfMessage(Message msg) {
 			Object[] response;
 			switch (msg.what) {
-				case FAILURE_MESSAGE :
-					response = (Object[]) msg.obj;
-					handleFailureMessage((FailureCode) response[0]);
-					break;
-				case PROGRESS_CHANGED :
-					response = (Object[]) msg.obj;
-					handleProgressChangedMessage(((Integer) response[0])
-							.intValue());
-					break;
-				case PAUSED_MESSAGE :
-					handlePausedMessage();
-					break;
-				case FINISH_MESSAGE :
-					onFinish();
-					break;
+			case FAILURE_MESSAGE:
+				response = (Object[]) msg.obj;
+				handleFailureMessage((FailureCode) response[0]);
+				break;
+			case PROGRESS_CHANGED:
+				response = (Object[]) msg.obj;
+				handleProgressChangedMessage(((Integer) response[0]).intValue());
+				break;
+			case PAUSED_MESSAGE:
+				handlePausedMessage();
+				break;
+			case FINISH_MESSAGE:
+				onFinish();
+				break;
 			}
 		}
 
@@ -222,11 +216,10 @@ public class UpdateDownloadRequest implements Runnable {
 						randomAccessFile.write(buffer, 0, length);
 						mCompleteSize += length;
 						if ((startPos + mCompleteSize) < (contentLength + startPos)) {
-							progress = (int) (Float
-									.parseFloat(getTwoPointFloatStr((float) (startPos + mCompleteSize)
-											/ (contentLength + startPos))) * 100);
+							progress = (int) (Float.parseFloat(getTwoPointFloatStr(
+									(float) (startPos + mCompleteSize) / (contentLength + startPos))) * 100);
 							if (limit % 30 == 0 || progress == 100) {
-								sendProgressChangedMessage(progress);
+								sendProgressChangedMessage(progress); //在子线程中读取流数据，后转发到主线程中去。
 							}
 						}
 						limit++;

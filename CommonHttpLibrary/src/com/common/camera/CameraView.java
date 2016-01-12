@@ -157,6 +157,7 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback2
 		parameters.setJpegQuality(100);
 		parameters.setJpegThumbnailQuality(100);
 		parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+		parameters.setRotation(90); //设置图片保存角度，90为与相机一致。
 		setFlashMode(mFlashMode);
 		mCamera.setDisplayOrientation(90); // 设置Camera的旋转角度
 		mCamera.setParameters(parameters);

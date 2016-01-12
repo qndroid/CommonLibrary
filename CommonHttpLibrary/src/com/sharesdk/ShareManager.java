@@ -23,7 +23,7 @@ public class ShareManager
 
 	private static ShareManager mShareManager = null;
 	/**
-	 * 应用程序上下文
+	 *  要分享到的平台
 	 */
 	private Platform mCurrentPlatform;
 
@@ -94,7 +94,7 @@ public class ShareManager
 		default:
 			break;
 		}
-		mCurrentPlatform.setPlatformActionListener(listener);
+		mCurrentPlatform.setPlatformActionListener(listener); //由应用层去处理回调,分享平台不关心。
 		mCurrentPlatform.share(shareData.mShareParams);
 	}
 
