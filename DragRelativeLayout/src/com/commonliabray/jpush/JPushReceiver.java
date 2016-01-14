@@ -38,20 +38,26 @@ public class JPushReceiver extends BroadcastReceiver {
 			Log.d(TAG, "[JPushReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
 		} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
+
 			/**
 			 * 此处可以通过写一个方法，决定出要跳转到那些页面，一些细节的处理，可以通过是不是从推送过来的，去多一个分支去处理。
 			 * 1.应用未启动，则依次启动以下三个页面。一次推送跳转流程中止。
-			 * 2.如果应用已经启动，------>不需要登陆的信息类型，直接跳转到信息展示页面。 ------>需要登陆的信息类型
-			 * ------>已经登陆----->直接跳转到信息展示页面。 ------>未登陆------->则跳转到登陆页面
-			 * ----->登陆完毕，跳转到信息展示页面。 ----->取消登陆，回到首页。
+			 * 2.如果应用已经启动，------>不需要登陆的信息类型，直接跳转到信息展示页面。 
+			 *                 ------>需要登陆的信息类型------>已经登陆----->直接跳转到信息展示页面。 
+			 *                                      ------>未登陆------->则跳转到登陆页面
+			 *                                                                      ----->登陆完毕，跳转到信息展示页面。 
+			 *                                                                      ----->取消登陆，回到首页。
 			 * 
 			 * 3.startActivities(Intent[]);在推送中的妙用,注意startActivities在生命周期上的一个细节,
 			 * 前面的Activity是不会真正创建的，直到要到对应的页面
-			 * 4.如果为了利用，可以将极光推送封装到一个Manager类中,为外部提供init, setTag, setAlias,
+			 * 4.如果为了复用，可以将极光推送封装到一个Manager类中,为外部提供init, setTag, setAlias,
 			 * setNotificationCustom等一系列常用的方法。
 			 */
 			PushMessage pushMessage = (PushMessage) ResponseEntityToModule
 					.parseJsonToModule(bundle.getString(JPushInterface.EXTRA_EXTRA), PushMessage.class);
+			/**
+			 * 如果应用已经启动(无论前台还是后台)
+			 */
 			if (getCurrentTask(context)) {
 				Intent pushIntent = new Intent();
 				pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -60,7 +66,8 @@ public class JPushReceiver extends BroadcastReceiver {
 				/**
 				 * 需要登陆且当前没有登陆才去登陆页面
 				 */
-				if (pushMessage.messageType.equals("2") && !UserManager.getInstance().hasLogined()) {
+				if (pushMessage.messageType != null && pushMessage.messageType.equals("2")
+						&& !UserManager.getInstance().hasLogined()) {
 					pushIntent.setClass(context, LoginActivity.class);
 					pushIntent.putExtra("fromPush", true);
 				} else {
@@ -75,6 +82,9 @@ public class JPushReceiver extends BroadcastReceiver {
 
 				context.startActivity(pushIntent);
 
+				/**
+				 * 应用没有启动。。。
+				 */
 			} else {
 
 				/**
@@ -83,7 +93,7 @@ public class JPushReceiver extends BroadcastReceiver {
 				Intent mainIntent = new Intent(context, MainActivity.class);
 				mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-				if (pushMessage.messageType.equals("2")) {
+				if (pushMessage.messageType != null && pushMessage.messageType.equals("2")) {
 					Intent loginIntent = new Intent();
 					loginIntent.setClass(context, LoginActivity.class);
 					loginIntent.putExtra("fromPush", true);
