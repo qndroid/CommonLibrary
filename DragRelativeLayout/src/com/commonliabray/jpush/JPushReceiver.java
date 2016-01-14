@@ -7,6 +7,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.commonliabray.activity.demo.MainActivity;
+import com.commonliabray.asynchttp.activity.LoginActivity;
+import com.commonliabray.asynchttp.manager.UserManager;
+import com.commonliabray.model.PushMessage;
+import com.loopj.android.http.commonhttp.ResponseEntityToModule;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
@@ -18,9 +22,8 @@ import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
 
 /**
- * 自定义接收器
- * 
- * 如果不定义这个 Receiver，则： 1) 默认用户会打开主界面 2) 接收不到自定义消息
+ * @author vision
+ * @function 接收极光服务广播出来的推送消息，实现跳转逻辑
  */
 public class JPushReceiver extends BroadcastReceiver {
 	private static final String TAG = "JPush";
@@ -28,23 +31,13 @@ public class JPushReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Bundle bundle = intent.getExtras();
-		Log.d(TAG, "[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
+		Log.d(TAG, "[JPushReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
 		if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
-			Log.d(TAG, "[MyReceiver] 接收到推送下来的通知");
 			int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
-			Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
+			Log.d(TAG, "[JPushReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
 		} else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
-			Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
-
-			// // 打开自定义的Activity
-			// Intent i = new Intent(context, JPushTestActivity.class);
-			// i.putExtras(bundle);
-			// // i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			// i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
-			// Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			// context.startActivity(i);
 			/**
 			 * 此处可以通过写一个方法，决定出要跳转到那些页面，一些细节的处理，可以通过是不是从推送过来的，去多一个分支去处理。
 			 * 1.应用未启动，则依次启动以下三个页面。一次推送跳转流程中止。
@@ -52,48 +45,56 @@ public class JPushReceiver extends BroadcastReceiver {
 			 * ------>已经登陆----->直接跳转到信息展示页面。 ------>未登陆------->则跳转到登陆页面
 			 * ----->登陆完毕，跳转到信息展示页面。 ----->取消登陆，回到首页。
 			 * 
-			 * 3.startActivities(Intent[]);在推送中的妙用,注意startActivity在生命周期上的一个细节,
+			 * 3.startActivities(Intent[]);在推送中的妙用,注意startActivities在生命周期上的一个细节,
 			 * 前面的Activity是不会真正创建的，直到要到对应的页面
 			 * 4.如果为了利用，可以将极光推送封装到一个Manager类中,为外部提供init, setTag, setAlias,
 			 * setNotificationCustom等一系列常用的方法。
 			 */
-			// Intent intentZero = new Intent(context, MainActivity.class);
-			// intentZero.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //
-			// 如果本包名的应用还没有启动，则一下要加此flag,
-			// // 为其新建一个任务栈。如果应用已经启动，则不需要.
-			// Intent intentOne = new Intent(context, JPushMainActivity.class);
-			// // intentOne.putExtras(bundle);
-			// Intent intentTwo = new Intent(context, JPushTestActivity.class);
-			// intentTwo.putExtras(bundle);
-			// context.startActivities(new Intent[] { intentZero, intentOne,
-			// intentTwo });
-
+			PushMessage pushMessage = (PushMessage) ResponseEntityToModule
+					.parseJsonToModule(bundle.getString(JPushInterface.EXTRA_EXTRA), PushMessage.class);
 			if (getCurrentTask(context)) {
+				Intent pushIntent = new Intent();
+				pushIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				pushIntent.putExtra("pushMessage", pushMessage);
+
 				/**
-				 * 已经运行,无需用户登陆的消息
+				 * 需要登陆且当前没有登陆才去登陆页面
 				 */
-				Log.e("------>", "is running");
-				Intent intentOne = new Intent(context, JPushTestActivity.class);
-				intentOne.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				intentOne.putExtras(bundle);
-				context.startActivity(intentOne);
-				/**
-				 * 已经运行，需要用户登陆
-				 */
+				if (pushMessage.messageType.equals("2") && !UserManager.getInstance().hasLogined()) {
+					pushIntent.setClass(context, LoginActivity.class);
+					pushIntent.putExtra("fromPush", true);
+				} else {
+					/**
+					 * 不需要登陆或者已经登陆的Case
+					 */
+					if (UserManager.getInstance().getUser() != null) {
+						Log.e("has logined:", UserManager.getInstance().getUser().data.name + " ");
+					}
+					pushIntent.setClass(context, JPushTestActivity.class);
+				}
+
+				context.startActivity(pushIntent);
 
 			} else {
+
 				/**
-				 * 还未运行,无需用户登陆的消息
+				 * 这里只分了两种类型，如果消息类型很多的话，用switch--case去匹配
 				 */
-				Log.e("------>", "is not running");
-				Intent intentZero = new Intent(context, MainActivity.class);
-				intentZero.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				Intent intentTwo = new Intent(context, JPushTestActivity.class);
-				intentTwo.putExtras(bundle);
-				context.startActivities(new Intent[] { intentZero, intentTwo });
-				/**
-				 * 还未运行，需要用户登陆 
-				 */
+				Intent mainIntent = new Intent(context, MainActivity.class);
+				mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+				if (pushMessage.messageType.equals("2")) {
+					Intent loginIntent = new Intent();
+					loginIntent.setClass(context, LoginActivity.class);
+					loginIntent.putExtra("fromPush", true);
+					loginIntent.putExtra("pushMessage", pushMessage);
+					context.startActivities(new Intent[] { mainIntent, loginIntent });
+				} else {
+
+					Intent pushIntent = new Intent(context, JPushTestActivity.class);
+					pushIntent.putExtra("pushMessage", pushMessage);
+					context.startActivities(new Intent[] { mainIntent, pushIntent });
+				}
 			}
 		}
 	}
@@ -113,6 +114,10 @@ public class JPushReceiver extends BroadcastReceiver {
 				}
 
 				try {
+
+					/**
+					 * 先将JSON字符串转化为对象，再取其中的字段
+					 */
 					JSONObject json = new JSONObject(bundle.getString(JPushInterface.EXTRA_EXTRA));
 					Iterator<String> it = json.keys();
 
@@ -136,6 +141,7 @@ public class JPushReceiver extends BroadcastReceiver {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	private boolean getCurrentTask(Context context) {
 
 		ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);

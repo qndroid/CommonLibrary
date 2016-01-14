@@ -18,6 +18,7 @@ import com.commonliabray.activity.photoview.LauncherActivity;
 import com.commonliabray.activity.systembartint.SystemBarActivity;
 import com.commonliabray.aidl.RemoteAIDLActivity;
 import com.commonliabray.asynchttp.activity.LoginActivity;
+import com.commonliabray.asynchttp.manager.UserManager;
 import com.commonliabray.camera.CameraActivity;
 import com.commonliabray.jpush.JPushMainActivity;
 import com.commonliabray.map.basic.BasicMapActivity;
@@ -131,5 +132,14 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			break;
 		}
 		startActivity(intent);
+	}
+
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		/**
+		 * 退出时清空用户信息
+		 */
+		UserManager.getInstance().removeUser();
 	}
 }
