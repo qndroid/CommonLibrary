@@ -162,10 +162,10 @@ public final class R {
 	}
 	public static final class layout {
 		public static final int activity_footer = 0x7f030009;
-		public static final int activity_title = 0x7f030019;
-		public static final int capture = 0x7f03001f;
-		public static final int circle_menu_item = 0x7f030020;
-		public static final int update_notification = 0x7f03002a;
+		public static final int activity_title = 0x7f03001a;
+		public static final int capture = 0x7f030020;
+		public static final int circle_menu_item = 0x7f030021;
+		public static final int update_notification = 0x7f03002b;
 	}
 	public static final class raw {
 		public static final int beep = 0x7f070000;

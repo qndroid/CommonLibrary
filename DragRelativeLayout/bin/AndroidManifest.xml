@@ -195,7 +195,7 @@
             android:name="JPUSH_APPKEY"
             android:value="a779bf7ec2fb4aab4f197f53" /> <!-- </>值来自开发者平台取得的AppKey -->
 
-        <activity android:name="com.commonliabray.okhttp.OKHttpTestActivity" />
+        <activity android:name="com.commonliabray.okhttp.OkHttpTestActivity" />
         
     </application>
 

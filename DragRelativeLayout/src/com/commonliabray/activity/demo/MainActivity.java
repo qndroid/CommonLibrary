@@ -30,7 +30,7 @@ import com.commonliabray.asynchttp.manager.UserManager;
 import com.commonliabray.camera.CameraActivity;
 import com.commonliabray.jpush.JPushMainActivity;
 import com.commonliabray.map.basic.BasicMapActivity;
-import com.commonliabray.okhttp.OKHttpTestActivity;
+import com.commonliabray.okhttp.OkHttpTestActivity;
 import com.commonliabray.qrcode.QrCodeActivity;
 import com.commonliabray.sharesdk.ShareActivity;
 import com.example.dragrelativelayout.R;
@@ -137,13 +137,12 @@ public class MainActivity extends Activity implements OnItemClickListener
 			intent = new Intent(this, JPushMainActivity.class);
 			break;
 		case 23:
-			intent = new Intent(this, OKHttpTestActivity.class);
+			intent = new Intent(this, OkHttpTestActivity.class);
 			break;
 		}
 		startActivity(intent);
 	}
 
-	
 	@Override
 	public void onBackPressed()
 	{
