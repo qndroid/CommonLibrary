@@ -22,6 +22,7 @@ public class CommonApplication extends Application {
 		initCookieStore();
 		initShareSdk();
 		initJPush();
+
 	}
 
 	/**

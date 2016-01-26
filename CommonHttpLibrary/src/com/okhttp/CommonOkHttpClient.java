@@ -6,34 +6,31 @@ import java.util.concurrent.TimeUnit;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
-import okhttp3.Call;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-
 import com.okhttp.cookie.SimpleCookieJar;
 import com.okhttp.listener.DisposeDataHandle;
 import com.okhttp.response.CommonFileCallback;
 import com.okhttp.response.CommonJsonCallback;
 import com.okhttp.ssl.HttpsUtils;
 
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 /**
  * @author vision
  * @function 用来发送get,post请求的工具类，包括设置一些请求的共用参数
  */
-public class CommonOkHttpClient
-{
+public class CommonOkHttpClient {
 	private static final int TIME_OUT = 30;
-	private static CommonOkHttpClient mClient = null;
-	private OkHttpClient mOkHttpClient;
+	private static OkHttpClient mOkHttpClient;
+	// private static CommonOkHttpClient mClient = null;
 
-	private CommonOkHttpClient()
-	{
+	static {
+
 		OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
-		okHttpClientBuilder.hostnameVerifier(new HostnameVerifier()
-		{
+		okHttpClientBuilder.hostnameVerifier(new HostnameVerifier() {
 			@Override
-			public boolean verify(String hostname, SSLSession session)
-			{
+			public boolean verify(String hostname, SSLSession session) {
 				return true;
 			}
 		});
@@ -50,28 +47,45 @@ public class CommonOkHttpClient
 		mOkHttpClient = okHttpClientBuilder.build();
 	}
 
-	public static CommonOkHttpClient getInstance()
-	{
-		if (mClient == null)
-		{
-			synchronized (CommonOkHttpClient.class)
-			{
-				if (mClient == null)
-				{
-					mClient = new CommonOkHttpClient();
-				}
-			}
-		}
-		return mClient;
-	}
+	// private CommonOkHttpClient() {
+	// OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
+	// okHttpClientBuilder.hostnameVerifier(new HostnameVerifier() {
+	// @Override
+	// public boolean verify(String hostname, SSLSession session) {
+	// return true;
+	// }
+	// });
+	//
+	// okHttpClientBuilder.cookieJar(new SimpleCookieJar());
+	// okHttpClientBuilder.connectTimeout(TIME_OUT, TimeUnit.SECONDS);
+	// okHttpClientBuilder.readTimeout(TIME_OUT, TimeUnit.SECONDS);
+	// okHttpClientBuilder.writeTimeout(TIME_OUT, TimeUnit.SECONDS);
+	// okHttpClientBuilder.followRedirects(true);
+	// /**
+	// * trust all the https point
+	// */
+	// //
+	// okHttpClientBuilder.sslSocketFactory(HttpsUtils.getSslSocketFactory());
+	// mOkHttpClient = okHttpClientBuilder.build();
+	// }
+	//
+	// public static CommonOkHttpClient getInstance() {
+	// if (mClient == null) {
+	// synchronized (CommonOkHttpClient.class) {
+	// if (mClient == null) {
+	// mClient = new CommonOkHttpClient();
+	// }
+	// }
+	// }
+	// return mClient;
+	// }
 
 	/**
 	 * 指定cilent信任指定证书
 	 * 
 	 * @param certificates
 	 */
-	public void setCertificates(InputStream... certificates)
-	{
+	public static void setCertificates(InputStream... certificates) {
 
 		mOkHttpClient.newBuilder().sslSocketFactory(HttpsUtils.getSslSocketFactory(certificates, null, null)).build();
 	}
@@ -79,8 +93,7 @@ public class CommonOkHttpClient
 	/**
 	 * 指定client信任所有证书
 	 */
-	public void setCertificates()
-	{
+	public static void setCertificates() {
 
 		mOkHttpClient.newBuilder().sslSocketFactory(HttpsUtils.getSslSocketFactory());
 	}
@@ -91,22 +104,19 @@ public class CommonOkHttpClient
 	 * @param request
 	 * @param callback
 	 */
-	public Call get(Request request, DisposeDataHandle handle)
-	{
+	public static Call get(Request request, DisposeDataHandle handle) {
 		Call call = mOkHttpClient.newCall(request);
 		call.enqueue(new CommonJsonCallback(handle));
 		return call;
 	}
 
-	public Call post(Request request, DisposeDataHandle handle)
-	{
+	public static Call post(Request request, DisposeDataHandle handle) {
 		Call call = mOkHttpClient.newCall(request);
 		call.enqueue(new CommonJsonCallback(handle));
 		return call;
 	}
 
-	public Call downloadFile(Request request, DisposeDataHandle handle)
-	{
+	public static Call downloadFile(Request request, DisposeDataHandle handle) {
 		Call call = mOkHttpClient.newCall(request);
 		call.enqueue(new CommonFileCallback(handle));
 		return call;

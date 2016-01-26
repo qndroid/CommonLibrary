@@ -5,15 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-import android.os.Handler;
-import android.os.Looper;
-
 import com.okhttp.exception.OkHttpException;
 import com.okhttp.listener.DisposeDataHandle;
 import com.okhttp.listener.DisposeDataListener;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**********************************************************
  * @文件名称：CommonFileCallback.java
@@ -22,8 +23,7 @@ import com.okhttp.listener.DisposeDataListener;
  * @文件描述：专门处理文件下载回调
  * @修改历史：2016年1月23日创建初始版本
  **********************************************************/
-public class CommonFileCallback implements Callback
-{
+public class CommonFileCallback implements Callback {
 	/**
 	 * the java layer exception, do not same to the logic error
 	 */
@@ -37,42 +37,33 @@ public class CommonFileCallback implements Callback
 	private Handler mDeliveryHandler;
 	private DisposeDataListener mListener;
 	private String mFilePath;
+	private int mProgress;
 
-	public CommonFileCallback(DisposeDataHandle handle)
-	{
+	public CommonFileCallback(DisposeDataHandle handle) {
 		this.mListener = handle.mListener;
 		this.mFilePath = handle.mSource;
 		this.mDeliveryHandler = new Handler(Looper.getMainLooper());
 	}
 
 	@Override
-	public void onFailure(final Call call, final IOException ioexception)
-	{
-		mDeliveryHandler.post(new Runnable()
-		{
+	public void onFailure(final Call call, final IOException ioexception) {
+		mDeliveryHandler.post(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				mListener.onFailure(new OkHttpException(NETWORK_ERROR, ioexception));
 			}
 		});
 	}
 
 	@Override
-	public void onResponse(Call call, Response response) throws IOException
-	{
+	public void onResponse(Call call, Response response) throws IOException {
 		final File file = handleResponse(response);
-		mDeliveryHandler.post(new Runnable()
-		{
+		mDeliveryHandler.post(new Runnable() {
 			@Override
-			public void run()
-			{
-				if (file != null)
-				{
+			public void run() {
+				if (file != null) {
 					mListener.onSuccess(file);
-				}
-				else
-				{
+				} else {
 					mListener.onFailure(new OkHttpException(IO_ERROR, EMPTY_MSG));
 				}
 			}
@@ -81,51 +72,46 @@ public class CommonFileCallback implements Callback
 
 	/**
 	 * 此时还在子线程中，不则调用回调接口
+	 * 
 	 * @param response
 	 * @return
 	 */
-	private File handleResponse(Response response)
-	{
-		if (response == null)
-		{
+	private File handleResponse(Response response) {
+		if (response == null) {
 			return null;
 		}
 
 		InputStream inputStream = null;
 		File file = null;
 		FileOutputStream fos = null;
-		int length = 0;
 		byte[] buffer = new byte[2048];
+		int length = -1;
+		int currentLength = 0;
+		double sumLength = 0;
+		try {
 
-		try
-		{
 			file = new File(mFilePath);
 			fos = new FileOutputStream(file);
 			inputStream = response.body().byteStream();
-			while ((length = inputStream.read(buffer)) != -1)
-			{
-				// 在这里可以将下载进度扔出去
+			sumLength = (double) response.body().contentLength();
+			while ((length = inputStream.read(buffer)) != -1) {
 				fos.write(buffer, 0, length);
+				currentLength += length;
+				mProgress = (int) (currentLength / sumLength * 100);
+				// 在这里可以将下载进度以回调的形式扔出去
+				Log.e("download progress:", String.valueOf(mProgress));
 			}
 			fos.flush();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			file = null;
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				fos.close();
 				inputStream.close();
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
 		return file;
 	}
 }
