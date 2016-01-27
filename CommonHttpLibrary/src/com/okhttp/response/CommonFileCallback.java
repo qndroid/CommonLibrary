@@ -5,16 +5,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-
 import com.okhttp.exception.OkHttpException;
 import com.okhttp.listener.DisposeDataHandle;
 import com.okhttp.listener.DisposeDownloadListener;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**********************************************************
  * @文件名称：CommonFileCallback.java
@@ -23,8 +23,7 @@ import com.okhttp.listener.DisposeDownloadListener;
  * @文件描述：专门处理文件下载回调
  * @修改历史：2016年1月23日创建初始版本
  **********************************************************/
-public class CommonFileCallback implements Callback
-{
+public class CommonFileCallback implements Callback {
 	/**
 	 * the java layer exception, do not same to the logic error
 	 */
@@ -40,17 +39,13 @@ public class CommonFileCallback implements Callback
 	private String mFilePath;
 	private int mProgress;
 
-	public CommonFileCallback(DisposeDataHandle handle)
-	{
+	public CommonFileCallback(DisposeDataHandle handle) {
 		this.mListener = (DisposeDownloadListener) handle.mListener;
 		this.mFilePath = handle.mSource;
-		this.mDeliveryHandler = new Handler(Looper.getMainLooper())
-		{
+		this.mDeliveryHandler = new Handler(Looper.getMainLooper()) {
 			@Override
-			public void handleMessage(Message msg)
-			{
-				switch (msg.what)
-				{
+			public void handleMessage(Message msg) {
+				switch (msg.what) {
 				case PROGRESS_MESSAGE:
 					mListener.onProgress((int) msg.obj);
 					break;
@@ -60,33 +55,24 @@ public class CommonFileCallback implements Callback
 	}
 
 	@Override
-	public void onFailure(final Call call, final IOException ioexception)
-	{
-		mDeliveryHandler.post(new Runnable()
-		{
+	public void onFailure(final Call call, final IOException ioexception) {
+		mDeliveryHandler.post(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				mListener.onFailure(new OkHttpException(NETWORK_ERROR, ioexception));
 			}
 		});
 	}
 
 	@Override
-	public void onResponse(Call call, Response response) throws IOException
-	{
+	public void onResponse(Call call, Response response) throws IOException {
 		final File file = handleResponse(response);
-		mDeliveryHandler.post(new Runnable()
-		{
+		mDeliveryHandler.post(new Runnable() {
 			@Override
-			public void run()
-			{
-				if (file != null)
-				{
+			public void run() {
+				if (file != null) {
 					mListener.onSuccess(file);
-				}
-				else
-				{
+				} else {
 					mListener.onFailure(new OkHttpException(IO_ERROR, EMPTY_MSG));
 				}
 			}
@@ -99,10 +85,8 @@ public class CommonFileCallback implements Callback
 	 * @param response
 	 * @return
 	 */
-	private File handleResponse(Response response)
-	{
-		if (response == null)
-		{
+	private File handleResponse(Response response) {
+		if (response == null) {
 			return null;
 		}
 
@@ -113,35 +97,26 @@ public class CommonFileCallback implements Callback
 		int length = -1;
 		int currentLength = 0;
 		double sumLength = 0;
-		try
-		{
+		try {
 			file = new File(mFilePath);
 			fos = new FileOutputStream(file);
 			inputStream = response.body().byteStream();
 			sumLength = (double) response.body().contentLength();
 
-			while ((length = inputStream.read(buffer)) != -1)
-			{
+			while ((length = inputStream.read(buffer)) != -1) {
 				fos.write(buffer, 0, length);
 				currentLength += length;
 				mProgress = (int) (currentLength / sumLength * 100);
-				mDeliveryHandler.obtainMessage(PROGRESS_MESSAGE, mProgress);
+				mDeliveryHandler.obtainMessage(PROGRESS_MESSAGE, mProgress).sendToTarget();
 			}
 			fos.flush();
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			file = null;
-		}
-		finally
-		{
-			try
-			{
+		} finally {
+			try {
 				fos.close();
 				inputStream.close();
-			}
-			catch (IOException e)
-			{
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

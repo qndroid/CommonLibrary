@@ -3,15 +3,7 @@ package com.okhttp.response;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.Response;
-
 import org.json.JSONObject;
-
-import android.os.Handler;
-import android.os.Looper;
 
 import com.loopj.android.http.commonhttp.ResponseEntityToModule;
 import com.okhttp.exception.OkHttpException;
@@ -19,12 +11,18 @@ import com.okhttp.listener.DisposeDataHandle;
 import com.okhttp.listener.DisposeDataListener;
 import com.okhttp.listener.DisposeHandleCookieListener;
 
+import android.os.Handler;
+import android.os.Looper;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.Response;
+
 /**
  * @author vision
  * @function 专门处理JSON的回调
  */
-public class CommonJsonCallback implements Callback
-{
+public class CommonJsonCallback implements Callback {
 
 	/**
 	 * the logic layer exception, may alter in different app
@@ -33,6 +31,9 @@ public class CommonJsonCallback implements Callback
 	protected final int RESULT_CODE_VALUE = 0;
 	protected final String ERROR_MSG = "emsg";
 	protected final String EMPTY_MSG = "";
+	protected final String COOKIE_STORE = "Set-Cookie"; // decide the server it
+														// can has the value of
+														// set-cookie2
 
 	/**
 	 * the java layer exception, do not same to the logic error
@@ -48,120 +49,87 @@ public class CommonJsonCallback implements Callback
 	private DisposeDataListener mListener;
 	private Class<?> mClass;
 
-	public CommonJsonCallback(DisposeDataHandle handle)
-	{
+	public CommonJsonCallback(DisposeDataHandle handle) {
 		this.mListener = handle.mListener;
 		this.mClass = handle.mClass;
 		this.mDeliveryHandler = new Handler(Looper.getMainLooper());
 	}
 
 	@Override
-	public void onFailure(final Call call, final IOException ioexception)
-	{
+	public void onFailure(final Call call, final IOException ioexception) {
 		/**
 		 * 此时还在非UI线程，因此要转发
 		 */
-		mDeliveryHandler.post(new Runnable()
-		{
+		mDeliveryHandler.post(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				mListener.onFailure(new OkHttpException(NETWORK_ERROR, ioexception));
 			}
 		});
 	}
 
 	@Override
-	public void onResponse(final Call call, final Response response) throws IOException
-	{
+	public void onResponse(final Call call, final Response response) throws IOException {
 		final String result = response.body().string();
 		final ArrayList<String> cookieLists = handleCookie(response.headers());
-		mDeliveryHandler.post(new Runnable()
-		{
+		mDeliveryHandler.post(new Runnable() {
 			@Override
-			public void run()
-			{
+			public void run() {
 				handleResponse(result);
 				/**
 				 * handle the cookie
 				 */
-				if (mListener instanceof DisposeHandleCookieListener)
-				{
-					handleCookie(response.headers());
+				if (mListener instanceof DisposeHandleCookieListener) {
 					((DisposeHandleCookieListener) mListener).onCookie(cookieLists);
 				}
 			}
 		});
 	}
 
-	private ArrayList<String> handleCookie(Headers headers)
-	{
+	private ArrayList<String> handleCookie(Headers headers) {
 		ArrayList<String> tempList = new ArrayList<String>();
-		for (int i = 0; i < headers.size(); i++)
-		{
-			if (headers.name(i).equals("Set-Cookie"))
-			{
+		for (int i = 0; i < headers.size(); i++) {
+			if (headers.name(i).equalsIgnoreCase(COOKIE_STORE)) {
 				tempList.add(headers.value(i));
 			}
 		}
 		return tempList;
 	}
 
-	private void handleResponse(Object responseObj)
-	{
-		if (responseObj == null)
-		{
+	private void handleResponse(Object responseObj) {
+		if (responseObj == null) {
 			mListener.onFailure(new OkHttpException(NETWORK_ERROR, EMPTY_MSG));
 			return;
 		}
 
-		try
-		{
+		try {
 			JSONObject result = new JSONObject(responseObj.toString());
-			if (result.has(RESULT_CODE))
-			{
-				if (result.optInt(RESULT_CODE) == RESULT_CODE_VALUE)
-				{
-					if (mClass == null)
-					{
+			if (result.has(RESULT_CODE)) {
+				if (result.optInt(RESULT_CODE) == RESULT_CODE_VALUE) {
+					if (mClass == null) {
 						mListener.onSuccess(result);
-					}
-					else
-					{
+					} else {
 						Object obj = ResponseEntityToModule.parseJsonObjectToModule(result, mClass);
-						if (obj != null)
-						{
+						if (obj != null) {
 							mListener.onSuccess(obj);
-						}
-						else
-						{
+						} else {
 							mListener.onFailure(new OkHttpException(JSON_ERROR, EMPTY_MSG));
 						}
 					}
-				}
-				else
-				{
-					if (result.has(ERROR_MSG))
-					{
-						mListener
-								.onFailure(new OkHttpException(result.optInt(RESULT_CODE), result.optString(ERROR_MSG)));
-					}
-					else
-					{
+				} else {
+					if (result.has(ERROR_MSG)) {
+						mListener.onFailure(
+								new OkHttpException(result.optInt(RESULT_CODE), result.optString(ERROR_MSG)));
+					} else {
 						mListener.onFailure(new OkHttpException(result.optInt(RESULT_CODE), EMPTY_MSG));
 					}
 				}
-			}
-			else
-			{
-				if (result.has(ERROR_MSG))
-				{
+			} else {
+				if (result.has(ERROR_MSG)) {
 					mListener.onFailure(new OkHttpException(OTHER_ERROR, result.optString(ERROR_MSG)));
 				}
 			}
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			mListener.onFailure(new OkHttpException(OTHER_ERROR, e.getMessage()));
 			e.printStackTrace();
 		}

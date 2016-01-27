@@ -3,17 +3,6 @@ package com.commonliabray.okhttp;
 import java.io.File;
 import java.util.ArrayList;
 
-import android.app.Activity;
-import android.graphics.BitmapFactory;
-import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.commonliabray.asynchttp.UrlConstants;
 import com.commonliabray.model.User;
 import com.example.dragrelativelayout.R;
@@ -25,12 +14,22 @@ import com.okhttp.listener.DisposeHandleCookieListener;
 import com.okhttp.request.CommonRequest;
 import com.okhttp.request.RequestParams;
 
+import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 /**
  * @author vision
  * @function OkHttpClient网络请求测试页面
  */
-public class OkHttpTestActivity extends Activity implements DisposeHandleCookieListener, OnClickListener
-{
+public class OkHttpTestActivity extends Activity implements DisposeHandleCookieListener, OnClickListener {
 	private ImageView mImageView;
 	private Button mLoginView;
 	private Button mCookieView;
@@ -38,15 +37,13 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 	private TextView mCookieTextView;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState)
-	{
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_okhttp_test);
 		initView();
 	}
 
-	private void initView()
-	{
+	private void initView() {
 		mImageView = (ImageView) findViewById(R.id.four_view);
 		mLoginView = (Button) findViewById(R.id.login_view);
 		mCookieView = (Button) findViewById(R.id.get_cookie_view);
@@ -57,23 +54,19 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 		mFileDownloadView.setOnClickListener(this);
 	}
 
-	private void getRequest()
-	{
+	private void getRequest() {
 		RequestParams params = new RequestParams();
 		params.put("type", "1");
 		params.put("name", "renzhiqaing");
 
 		CommonOkHttpClient.get(CommonRequest.createGetRequest("https://publicobject.com/helloworld.txt", params),
-				new DisposeDataHandle(new DisposeDataListener()
-				{
+				new DisposeDataHandle(new DisposeDataListener() {
 					@Override
-					public void onSuccess(Object responseObj)
-					{
+					public void onSuccess(Object responseObj) {
 					}
 
 					@Override
-					public void onFailure(Object reasonObj)
-					{
+					public void onFailure(Object reasonObj) {
 					}
 				}));
 	}
@@ -81,8 +74,7 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 	/**
 	 * 发送post请求,经过封装后使用方式式与AsyncHttpClient完全一样
 	 */
-	private void postRequest()
-	{
+	private void postRequest() {
 		/**
 		 * 这里在实际工程中还要再封装一层才好
 		 */
@@ -96,26 +88,22 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 	/**
 	 * 此处以下载图片做为文件下载的demo
 	 */
-	private void downloadFile()
-	{
+	private void downloadFile() {
 		CommonOkHttpClient.downloadFile(CommonRequest.createGetRequest("http://images.csdn.net/20150817/1.jpg", null),
-				new DisposeDataHandle(new DisposeDownloadListener()
-				{
+				new DisposeDataHandle(new DisposeDownloadListener() {
 					@Override
-					public void onSuccess(Object responseObj)
-					{
+					public void onSuccess(Object responseObj) {
 						mImageView.setImageBitmap(BitmapFactory.decodeFile(((File) responseObj).getAbsolutePath()));
 					}
 
 					@Override
-					public void onFailure(Object reasonObj)
-					{
+					public void onFailure(Object reasonObj) {
 					}
 
 					@Override
-					public void onProgress(int progrss)
-					{
+					public void onProgress(int progrss) {
 						// 监听下载进度，更新UI
+						Log.e("--------->当前进度为:", progrss + "");
 					}
 				}, Environment.getExternalStorageDirectory().getAbsolutePath() + "/test2.jpg"));
 	}
@@ -126,51 +114,42 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 	 * @param responseObj
 	 */
 	@Override
-	public void onSuccess(Object responseObj)
-	{
+	public void onSuccess(Object responseObj) {
 		mCookieTextView.setText(((User) responseObj).data.nick);
 
 		/**
 		 * 这是一个需要Cookie的请求，说明Okhttp帮我们存储了Cookie
 		 */
-		CommonOkHttpClient.post(CommonRequest.createPostRequest(UrlConstants.PUSH_LIST, null), new DisposeDataHandle(
-				new DisposeDataListener()
-				{
+		CommonOkHttpClient.post(CommonRequest.createPostRequest(UrlConstants.PUSH_LIST, null),
+				new DisposeDataHandle(new DisposeDataListener() {
 					@Override
-					public void onSuccess(Object responseObj)
-					{
+					public void onSuccess(Object responseObj) {
 						mCookieTextView.setText(responseObj.toString());
 					}
 
 					@Override
-					public void onFailure(Object reasonObj)
-					{
+					public void onFailure(Object reasonObj) {
 					}
 				}));
 	}
 
 	@Override
-	public void onFailure(Object reasonObj)
-	{
-		Log.e("----->error", reasonObj.toString());
+	public void onFailure(Object reasonObj) {
 	}
 
 	@Override
-	public void onCookie(ArrayList<String> cookieStrLists)
-	{
+	public void onCookie(ArrayList<String> cookieStrLists) {
 		// 自己处理Cookie回调
+		Log.e("cookie的值为：", cookieStrLists.get(0));
 	}
 
-	private void getCookie()
-	{
+	private void getCookie() {
 
 	}
 
 	@Override
-	public void onClick(View v)
-	{
-		switch (v.getId())
-		{
+	public void onClick(View v) {
+		switch (v.getId()) {
 
 		case R.id.login_view:
 			postRequest();
