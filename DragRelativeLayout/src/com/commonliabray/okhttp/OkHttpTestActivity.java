@@ -1,6 +1,7 @@
 package com.commonliabray.okhttp;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import com.commonliabray.asynchttp.UrlConstants;
@@ -108,6 +109,26 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 				}, Environment.getExternalStorageDirectory().getAbsolutePath() + "/test2.jpg"));
 	}
 
+	private void uploadFile() throws FileNotFoundException {
+
+		RequestParams params = new RequestParams();
+		params.put("test", new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/test2.jpg"));
+
+		CommonOkHttpClient.post(CommonRequest.createMultiPostRequest("https://api.imgur.com/3/image", params),
+				new DisposeDataHandle(new DisposeDataListener() {
+
+					@Override
+					public void onSuccess(Object responseObj) {
+
+					}
+
+					@Override
+					public void onFailure(Object reasonObj) {
+
+					}
+				}));
+	}
+
 	/**
 	 * 服务器返回数据
 	 * 
@@ -115,7 +136,6 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 	 */
 	@Override
 	public void onSuccess(Object responseObj) {
-		mCookieTextView.setText(((User) responseObj).data.nick);
 
 		/**
 		 * 这是一个需要Cookie的请求，说明Okhttp帮我们存储了Cookie
@@ -124,7 +144,8 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 				new DisposeDataHandle(new DisposeDataListener() {
 					@Override
 					public void onSuccess(Object responseObj) {
-						mCookieTextView.setText(responseObj.toString());
+						// mCookieTextView.setText(responseObj.toString());
+						// Log.e("push_list", responseObj.toString());
 					}
 
 					@Override
@@ -139,12 +160,8 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 
 	@Override
 	public void onCookie(ArrayList<String> cookieStrLists) {
-		// 自己处理Cookie回调
-		Log.e("cookie的值为：", cookieStrLists.get(0));
-	}
-
-	private void getCookie() {
-
+		// 自己处理Cookie回调，返回的是cookie字符串，如果想要cookie对象，可以使用HttpCookie解析为对象类型。
+		mCookieTextView.setText(cookieStrLists.get(0));
 	}
 
 	@Override
@@ -155,7 +172,11 @@ public class OkHttpTestActivity extends Activity implements DisposeHandleCookieL
 			postRequest();
 			break;
 		case R.id.get_cookie_view:
-			getCookie();
+			try {
+				uploadFile();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 			break;
 		case R.id.down_load_file:
 			downloadFile();
